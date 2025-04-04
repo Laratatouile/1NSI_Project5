@@ -1,0 +1,13 @@
+{
+    "pause" : 27,
+    "arret" : 111,
+    "interaction" : 101,
+    "musique" : 77,
+
+    "avancer" : 122,
+    "reculer" : 115,
+    "droite" : 100,
+    "gauche" : 113,
+
+    "clic_principal" : 11004
+}

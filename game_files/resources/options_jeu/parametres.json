@@ -1,0 +1,17 @@
+{
+    "taille_fenetre_x" : 162,
+    "taille_fenetre_y" : 112,
+    "taille_fenetre_jeu" : 112,
+    "largeur_textes" : 50,
+    "couleur_textes" : 7,
+    "nombre_paternes" : 7,
+    "son" : false,
+    "fps" : 60,
+    "fullscreen" : true,
+
+    "vitesse_personnage" : 1,
+
+    "vitesse_zombie" : 0.1,
+    "vie_zombie" : 100,
+    "vitesse_spawn" : 2
+}

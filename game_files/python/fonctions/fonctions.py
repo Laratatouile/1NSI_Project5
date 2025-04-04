@@ -1,0 +1,51 @@
+from datetime import datetime
+from json import load, dump
+
+### ___ affichage dans la comsole simplifié ___ ###
+def logs(Loader, Gravity, Text):
+    """
+        Loader, gravite, texte
+    """
+    def _log(Loader, Gravity, LenSpace, Text):
+        print("[",str(datetime.now())[11:-7],"] [",Loader,"/",Gravity.upper(),"]",LenSpace," :",Text)
+
+    
+    decalage_max_texte, LenSpace = 20, ""
+    if len(Loader) + len(Gravity) < decalage_max_texte:
+        Space = decalage_max_texte - (len(Loader) + len(Gravity))
+        for i in range(Space):
+            LenSpace += " "
+    _log(Loader, Gravity, LenSpace, Text)
+
+
+
+
+
+
+### ___ getion des fichiers ___ ###
+def json_read(file:str):
+    """
+        chargement du fichier a ouvrir et retour sous forme de dictionnaire
+        Si data renvoie data
+        Sinon renvoie None
+    """
+    try:
+        data = load(open(file, "r"))
+        logs("JsonReader", "INFO", "Le fichier a été lu")
+    except:
+        logs("JsonReader", "INFO", "Le fichier n'a pas été lu")
+        return None
+    return data
+
+def json_save(data:dict, file:str) -> None:
+    """
+        sauvegarde du dictionnaire dans le fichier donne
+        Si le fichier n'est pas sauvegarde
+    """
+    try:
+        dump(data, open(file, "w"))
+        logs("JsonReader", "INFO", "Le fichier a été enregistré")
+    except Exception as e:
+        logs("JsonReader", "FATAL", "Le fichier n'a pas pu être enregistré : "+str(e), 2)
+
+    return None
