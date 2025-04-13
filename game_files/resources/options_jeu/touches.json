@@ -9,5 +9,5 @@
     "droite" : 100,
     "gauche" : 113,
 
-    "clic_principal" : 11004
+    "clic_principal" : "gauche"
 }

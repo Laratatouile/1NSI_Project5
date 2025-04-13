@@ -6,23 +6,19 @@ def logs(Loader, Gravity, Text):
     """
         Loader, gravite, texte
     """
-    def _log(Loader, Gravity, LenSpace, Text):
-        print("[",str(datetime.now())[11:-7],"] [",Loader,"/",Gravity.upper(),"]",LenSpace," :",Text)
-
-    
     decalage_max_texte, LenSpace = 20, ""
     if len(Loader) + len(Gravity) < decalage_max_texte:
         Space = decalage_max_texte - (len(Loader) + len(Gravity))
         for i in range(Space):
             LenSpace += " "
-    _log(Loader, Gravity, LenSpace, Text)
+    print("[",str(datetime.now())[11:-7],"] [",Loader,"/",Gravity.upper(),"]",LenSpace," :",Text)
 
 
 
 
 
 
-### ___ getion des fichiers ___ ###
+### ___ getion des fichiers json ___ ###
 def json_read(file:str):
     """
         chargement du fichier a ouvrir et retour sous forme de dictionnaire
@@ -31,7 +27,6 @@ def json_read(file:str):
     """
     try:
         data = load(open(file, "r"))
-        logs("JsonReader", "INFO", "Le fichier a été lu")
     except:
         logs("JsonReader", "INFO", "Le fichier n'a pas été lu")
         return None
