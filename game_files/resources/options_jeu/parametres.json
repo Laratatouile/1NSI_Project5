@@ -1,7 +1,6 @@
 {
-    "taille_fenetre_x" : 162,
-    "taille_fenetre_y" : 112,
-    "taille_fenetre_jeu" : 112,
+    "taille_fenetre_x" : 900,
+    "taille_fenetre_y" : 500,
     "largeur_textes" : 50,
     "couleur_textes" : 7,
     "nombre_paternes" : 7,

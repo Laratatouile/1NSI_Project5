@@ -1,11 +1,15 @@
 import pyxel
 import fonctions.touches_param as recup_option
 import fonctions.chiffrement as chiffrement
+import fonctions.fonctions as fct
 
 
 # importation des objects
 import objects.demarrage as demarrage
 import objects.menu_principal as menu_principal
+
+
+import os
 
 
 
@@ -31,7 +35,7 @@ def update():
 def draw() -> None:
     """ affiche les graphismes """
     # importation des variables
-    global affichage, options_globales
+    global affichage, options_globales, liste_datas_cartes
 
     # clear
     pyxel.cls(0)
@@ -40,7 +44,13 @@ def draw() -> None:
     if options_globales["whereami"] == "start":
         demarrage.draw(affichage, options_globales)
 
+    # si je suis sur l'ecran principal
+    elif options_globales["whereami"] == "menu_principal":
+        menu_principal.draw(liste_datas_cartes["menu_principal"])
+
     return None
+
+
 
 
 
@@ -69,6 +79,21 @@ pyxel.init(
     fps=options_globales["fenetre"]["fps"],
     quit_key=pyxel.KEY_AC_BOOKMARKS
     )
+
+
+
+# initialisation des images
+pyxel.images[2].load(0, 0, "../resources/tiled/jeux_tuiles/UI.png")
+
+global liste_datas_cartes
+liste_datas_cartes = {
+    "menu_principal" : fct.json_read("../resources/tiled/json/menu_principal.json"),
+    "map" : fct.json_read("../resources/tiled/json/map.json")
+}
+
+
+
+
 
 pyxel.fullscreen(recup_option.param("fullscreen"))
 pyxel.run(update, draw)

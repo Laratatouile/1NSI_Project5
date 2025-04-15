@@ -3,22 +3,35 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "decor.tsx",
+    "activeFile": "menu_principal.tmx",
     "expandedProjectPaths": [
-        "."
+        ".",
+        "json"
     ],
     "fileStates": {
+        "UI.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
         "carte.tmx": {
-            "scale": 0.75,
+            "scale": 1,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 436,
-                "y": 100
+                "x": 397,
+                "y": 227
             }
         },
         "decor.tsx": {
             "scaleInDock": 1,
             "scaleInEditor": 1
+        },
+        "menu_principal.tmx": {
+            "scale": 0.75,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 453.33333333333337,
+                "y": 276
+            }
         },
         "monstres.tsx": {
             "scaleInDock": 1,
@@ -36,18 +49,23 @@
     "map.lastUsedFormat": "tmx",
     "map.tileHeight": 50,
     "map.tileWidth": 50,
-    "map.width": 300,
+    "map.width": 18,
     "openFiles": [
         "patates.tsx",
         "monstres.tsx",
-        "decor.tsx"
+        "decor.tsx",
+        "carte.tmx",
+        "UI.tsx",
+        "menu_principal.tmx"
     ],
     "project": "game.tiled-project",
     "recentFiles": [
         "patates.tsx",
         "monstres.tsx",
         "decor.tsx",
-        "carte.tmx"
+        "carte.tmx",
+        "UI.tsx",
+        "menu_principal.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {
