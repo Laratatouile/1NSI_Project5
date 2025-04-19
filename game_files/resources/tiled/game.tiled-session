@@ -4,12 +4,17 @@
         "width": 2
     },
     "activeFile": "menu_principal.tmx",
+    "console.history": [
+        "ls",
+        "list"
+    ],
     "expandedProjectPaths": [
         ".",
         "json"
     ],
     "fileStates": {
         "UI.tsx": {
+            "dynamicWrapping": false,
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
@@ -43,6 +48,7 @@
         }
     },
     "last.exportedFilePath": "C:/Users/micro/Documents/GitHub/1NSI_Project5/game_files/resources/tiled/json",
+    "last.externalTilesetPath": "C:/Users/micro/Documents/GitHub/1NSI_Project5/game_files/resources/tiled/jeux_tuiles",
     "last.imagePath": "C:/Users/micro/Documents/GitHub/1NSI_Project5/game_files/resources/tiled/jeux_tuiles",
     "map.height": 10,
     "map.lastUsedExportFilter": "Fichiers de carte JSON (*.tmj *.json)",
@@ -55,8 +61,8 @@
         "monstres.tsx",
         "decor.tsx",
         "carte.tmx",
-        "UI.tsx",
-        "menu_principal.tmx"
+        "menu_principal.tmx",
+        "UI.tsx"
     ],
     "project": "game.tiled-project",
     "recentFiles": [
@@ -67,6 +73,7 @@
         "UI.tsx",
         "menu_principal.tmx"
     ],
+    "tileset.lastUsedFilter": "Tous les Fichiers (*)",
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {
         "height": 50,

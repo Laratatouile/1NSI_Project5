@@ -23,6 +23,7 @@ def draw(data_carte) -> None:
 
             u = (tuile % tileset_width) * tile_width
             v = (tuile // tileset_width) * tile_height
+            v = 0
 
             pyxel.blt(x * tile_width, y * tile_height, 2, u, v, tile_width, tile_height)
     return None
