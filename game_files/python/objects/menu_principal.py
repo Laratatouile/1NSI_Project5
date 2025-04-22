@@ -10,9 +10,9 @@ def draw(data_carte) -> None:
     layer = data_carte["layers"][0]
     width = layer["width"]
     height = layer["height"]
-    tileset_width = data_carte["width"]
     tile_width = data_carte["tilewidth"]
     tile_height = data_carte["tileheight"]
+
 
     for y in range(height):
         for x in range(width):
@@ -21,9 +21,8 @@ def draw(data_carte) -> None:
                 continue
             tuile -= 1
 
-            u = (tuile % tileset_width) * tile_width
-            v = (tuile // tileset_width) * tile_height
-            v = 0
+            u = tuile % 5 * tile_width
+            v = tuile // 5 * tile_height
 
             pyxel.blt(x * tile_width, y * tile_height, 2, u, v, tile_width, tile_height)
     return None

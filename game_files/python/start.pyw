@@ -9,14 +9,20 @@ import objects.demarrage as demarrage
 import objects.menu_principal as menu_principal
 
 
-import os
-
 
 
 def update():
     """ calcule ce qu'il y a afficher """
     # importation des variables
     global affichage, options_globales
+
+
+    # tmp
+    if pyxel.btn(pyxel.KEY_T):
+        pyxel.quit()
+
+
+
 
     # si je suis sur l'ecran de demarrage
     if options_globales["whereami"] == "start":

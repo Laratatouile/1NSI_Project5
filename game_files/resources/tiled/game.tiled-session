@@ -9,8 +9,8 @@
         "list"
     ],
     "expandedProjectPaths": [
-        ".",
-        "json"
+        "json",
+        "."
     ],
     "fileStates": {
         "UI.tsx": {
@@ -22,8 +22,8 @@
             "scale": 1,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 397,
-                "y": 227
+                "x": 7500.5,
+                "y": 249.5
             }
         },
         "decor.tsx": {
@@ -31,11 +31,11 @@
             "scaleInEditor": 1
         },
         "menu_principal.tmx": {
-            "scale": 0.75,
+            "scale": 1,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 453.33333333333337,
-                "y": 276
+                "x": 239.5,
+                "y": 195.5
             }
         },
         "monstres.tsx": {
@@ -47,7 +47,7 @@
             "scaleInEditor": 1
         }
     },
-    "last.exportedFilePath": "C:/Users/micro/Documents/GitHub/1NSI_Project5/game_files/resources/tiled/json",
+    "last.exportedFilePath": "C:/Users/Eleve/Documents/GitHub/1NSI_Project5/game_files/resources/tiled/json",
     "last.externalTilesetPath": "C:/Users/micro/Documents/GitHub/1NSI_Project5/game_files/resources/tiled/jeux_tuiles",
     "last.imagePath": "C:/Users/micro/Documents/GitHub/1NSI_Project5/game_files/resources/tiled/jeux_tuiles",
     "map.height": 10,

@@ -32,14 +32,6 @@
  "tilesets":[
         {
          "firstgid":1,
-         "source":"..\/patates.tsx"
-        }, 
-        {
-         "firstgid":101,
-         "source":"..\/monstres.tsx"
-        }, 
-        {
-         "firstgid":201,
          "source":"..\/UI.tsx"
         }],
  "tilewidth":50,

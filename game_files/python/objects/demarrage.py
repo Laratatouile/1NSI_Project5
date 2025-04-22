@@ -21,7 +21,7 @@ def update(options_globales:dict, affichage:int) -> dict:
 def draw(affichage:int, options_globales:dict) -> None:
     """ affiche l'ecran de demarrage """
     if affichage == 0:
-        pyxel.text(options_globales["fenetre"]["x"] // 2 - 60, options_globales["fenetre"]["y"] // 2 - 10, "La pomme de terre c'est super", 14)
+        draw_big_text(options_globales["fenetre"]["x"] // 2 - 60, options_globales["fenetre"]["y"] // 2 - 10, "La pomme de terre c'est super")
     if affichage == 1:
         pyxel.text(options_globales["fenetre"]["x"] // 2 - 20, options_globales["fenetre"]["y"] // 2 - 10, "Realise par", 12)
         pyxel.text(options_globales["fenetre"]["x"] // 2 - 30, options_globales["fenetre"]["y"] // 2, "Maxime GEOFFROY", 12)
@@ -33,3 +33,10 @@ def draw(affichage:int, options_globales:dict) -> None:
     return None
 
 
+def draw_big_text(x, y, text, scale=4, col=7):
+    for i, char in enumerate(text.upper()):
+        c = ord(char)
+        if 32 <= c <= 127:
+            cx = (c % 16) * 4
+            cy = (c // 16 - 2) * 6
+            pyxel.blt(x + i * scale * 4, y, 0, cx, cy, 4 * scale, 6 * scale, 0)
