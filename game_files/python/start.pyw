@@ -1,4 +1,7 @@
 import pyxel
+
+
+# importation des fonctions
 import fonctions.touches_param as recup_option
 import fonctions.chiffrement as chiffrement
 import fonctions.fonctions as fct
@@ -7,6 +10,7 @@ import fonctions.fonctions as fct
 # importation des objects
 import objects.demarrage as demarrage
 import objects.menu_principal as menu_principal
+import objects.curseur as curseur
 
 
 
@@ -22,6 +26,8 @@ def update():
         pyxel.quit()
 
 
+    # affichage de la souris
+    options_globales = curseur.update(options_globales)
 
 
     # si je suis sur l'ecran de demarrage
@@ -46,9 +52,12 @@ def draw() -> None:
     # clear
     pyxel.cls(0)
 
+    # affichage de la souris
+    curseur.draw(options_globales, liste_datas_cartes)
+
     # si je suis sur l'ecran de demarrage
     if options_globales["whereami"] == "start":
-        demarrage.draw(affichage, options_globales)
+        demarrage.draw(affichage, liste_datas_cartes)
 
     # si je suis sur l'ecran principal
     elif options_globales["whereami"] == "menu_principal":
@@ -73,7 +82,13 @@ options_globales = {
         "y" : recup_option.param("taille_fenetre_y"),
         "fps" : recup_option.param("fps")
     },
+    "curseur" : {
+        "x" : 0,
+        "y" : 0
+    },
 }
+
+
 
 
 
@@ -88,13 +103,28 @@ pyxel.init(
 
 
 
-# initialisation des images
-pyxel.images[2].load(0, 0, "../resources/tiled/jeux_tuiles/UI.png")
+### ___ initialisation des images ___ ###
+# lettres et chiffres
+pyxel.images[0].load(0, 0, "../resources/tiled/jeux_tuiles/lettres1.png")
+pyxel.images[1].load(0, 0, "../resources/tiled/jeux_tuiles/lettres2.png")
+
+
 
 global liste_datas_cartes
 liste_datas_cartes = {
-    "menu_principal" : fct.json_read("../resources/tiled/json/menu_principal.json"),
-    "map" : fct.json_read("../resources/tiled/json/map.json")
+    "demarrage_1" : fct.json_read("../resources/tiled/json/demarrage/demarrage1.json"),
+    "demarrage_2" : fct.json_read("../resources/tiled/json/demarrage/demarrage2.json"),
+    "demarrage_3" : fct.json_read("../resources/tiled/json/demarrage/demarrage3.json"),
+    "demarrage_4" : fct.json_read("../resources/tiled/json/demarrage/demarrage4.json"),
+    "menu_principal" : [
+        fct.json_read("../resources/tiled/json/menu_principal.json"),
+        "../resources/tiled/jeux_tuiles/decor.png"
+        ],
+    "map" : [
+        fct.json_read("../resources/tiled/json/map.json"),
+        "../resources/tiled/jeux_tuiles/decor.png"
+        ],
+    "objects" : "../resources/tiled/jeux_tuiles/objects.png"
 }
 
 

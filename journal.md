@@ -12,8 +12,15 @@ creation des graphismes des patates et de l'arriere plan du niveau et des monstr
 creation de la carte de jeu
 
 
+# semaine lycee 1
+Creation des lettres
+Creation du fichier d'affichage des cartes
+
 
 
 
 # autres
-les ui sont dans l'image 2
+Les textes sont de A à X dans l'image 0 et de Z à 9 dans la 1
+le reste se charge dynamiquement
+
+

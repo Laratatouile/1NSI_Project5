@@ -3,12 +3,13 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "menu_principal.tmx",
+    "activeFile": "",
     "console.history": [
         "ls",
         "list"
     ],
     "expandedProjectPaths": [
+        "json/demarrage",
         "json",
         "."
     ],
@@ -22,7 +23,7 @@
             "scale": 1,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 7500.5,
+                "x": 7500,
                 "y": 249.5
             }
         },
@@ -30,48 +31,132 @@
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
+        "json/demarrage/demarrage1.json": {
+            "scale": 0.7789999999999999,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 399.8716302952503,
+                "y": 416.5596919127086
+            }
+        },
+        "json/demarrage/demarrage2.json": {
+            "scale": 0.7789999999999999,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 449.93581514762525,
+                "y": 249.6790757381258
+            }
+        },
+        "json/demarrage/demarrage3.json": {
+            "scale": 0.7789999999999999,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 449.93581514762525,
+                "y": 249.6790757381258
+            }
+        },
+        "json/demarrage/demarrage4.json": {
+            "scale": 0.7789999999999999,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 449.93581514762525,
+                "y": 249.6790757381258
+            }
+        },
+        "json/menu_principal.json": {
+            "scale": 0.7789999999999999,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 449.93581514762525,
+                "y": 247.11168164313221
+            }
+        },
+        "json/objects.json": {
+            "scale": 2.8044,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 124.98217087434034,
+                "y": 124.98217087434033
+            }
+        },
+        "lettres1.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "lettres2.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
         "menu_principal.tmx": {
             "scale": 1,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 239.5,
-                "y": 195.5
+                "x": 450.5,
+                "y": 249.5
             }
         },
         "monstres.tsx": {
             "scaleInDock": 1,
             "scaleInEditor": 0.75
         },
+        "objects.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
         "patates.tsx": {
             "scaleInDock": 1,
             "scaleInEditor": 1
+        },
+        "sans titre.tmx": {
+            "scale": 0.7789999999999999,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 449.93581514762525,
+                "y": 249.6790757381258
+            }
+        },
+        "sans titre1.tmx": {
+            "scale": 0.7789999999999999,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 449.93581514762525,
+                "y": 249.6790757381258
+            }
+        },
+        "sans titre2.tmx": {
+            "scale": 0.7789999999999999,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 452.5032092426188,
+                "y": 294.6084724005135
+            }
         }
     },
     "last.exportedFilePath": "C:/Users/Eleve/Documents/GitHub/1NSI_Project5/game_files/resources/tiled/json",
     "last.externalTilesetPath": "C:/Users/micro/Documents/GitHub/1NSI_Project5/game_files/resources/tiled/jeux_tuiles",
-    "last.imagePath": "C:/Users/micro/Documents/GitHub/1NSI_Project5/game_files/resources/tiled/jeux_tuiles",
-    "map.height": 10,
+    "last.imagePath": "C:/Users/Eleve/Documents/GitHub/1NSI_Project5/game_files/resources/tiled/jeux_tuiles",
+    "map.height": 5,
     "map.lastUsedExportFilter": "Fichiers de carte JSON (*.tmj *.json)",
     "map.lastUsedFormat": "tmx",
     "map.tileHeight": 50,
     "map.tileWidth": 50,
-    "map.width": 18,
+    "map.width": 5,
     "openFiles": [
-        "patates.tsx",
-        "monstres.tsx",
-        "decor.tsx",
-        "carte.tmx",
-        "menu_principal.tmx",
-        "UI.tsx"
     ],
     "project": "game.tiled-project",
     "recentFiles": [
-        "patates.tsx",
-        "monstres.tsx",
-        "decor.tsx",
+        "objects.tsx",
+        "json/objects.json",
+        "lettres1.tsx",
+        "lettres2.tsx",
+        "json/demarrage/demarrage1.json",
+        "json/demarrage/demarrage2.json",
+        "json/demarrage/demarrage3.json",
+        "json/demarrage/demarrage4.json",
+        "json/menu_principal.json",
         "carte.tmx",
-        "UI.tsx",
-        "menu_principal.tmx"
+        "menu_principal.tmx",
+        "decor.tsx"
     ],
     "tileset.lastUsedFilter": "Tous les Fichiers (*)",
     "tileset.lastUsedFormat": "tsx",
