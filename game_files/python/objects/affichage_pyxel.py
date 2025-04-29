@@ -1,28 +1,29 @@
 import pyxel
 
 
-def draw_carte(datas_carte:dict) -> None:
+def draw_carte(data_carte:dict) -> None:
     """ Affiche la carte à l'écran en utilisant les données de Tiled et Pyxel """
-
-    data_carte = (datas_carte[0] if len(datas_carte) == 2 else datas_carte)
-
-
-    for i in range(len(data_carte["layers"])):
+    for i in range(len(data_carte[0]["layers"])):
         # calcul des differentes variables pour l'affichage
-        layer = data_carte["layers"][i]
+        layer = data_carte[0]["layers"][i]
         width, height = layer["width"], layer["height"]
-        tile_width, tile_height = data_carte["tilewidth"], data_carte["tileheight"]
+        tile_width, tile_height = data_carte[0]["tilewidth"], data_carte[0]["tileheight"]
 
-        decalage_x = (data_carte["layers"][i]["offsetx"] if "offsetx" in data_carte["layers"][i].keys() else 0)
-        decalage_y = (data_carte["layers"][i]["offsety"] if "offsety" in data_carte["layers"][i].keys() else 0)
+        decalage_x = (data_carte[0]["layers"][i]["offsetx"] if "offsetx" in data_carte[0]["layers"][i].keys() else 0)
+        decalage_y = (data_carte[0]["layers"][i]["offsety"] if "offsety" in data_carte[0]["layers"][i].keys() else 0)
 
-        # detection du type de tuile a afficher
-        objects = data_carte["layers"][i]["name"]
-        img = 2
+
+        ### ___ detection du type de tuile a afficher ___ ###
+        objects = data_carte[0]["layers"][i]["name"]
+        
+        # si c un texte
         if objects == "textes":
             img = 0
+            pyxel.images[0].load(0, 0, "../resources/tiled/jeux_tuiles/lettres1.png")
+            pyxel.images[1].load(0, 0, "../resources/tiled/jeux_tuiles/lettres2.png")
+        # si c'est une partie de L'UI
         elif objects == "UI":
-            pyxel.images[2].load(0, 0, datas_carte[1])
+            pyxel.images[0].load(0, 0, "../resources/tiled/jeux_tuiles/UI.png")
 
 
         # affichage des tuiles une par une
@@ -55,3 +56,4 @@ def draw_object(data_carte:dict, id_tuile:int, x:int, y:int) -> None:
     pyxel.images[2].load(0, 0, data_carte)
     pyxel.blt(x, y, id_tuile % 5, id_tuile // 5, 2, 50, 50)
     return None
+

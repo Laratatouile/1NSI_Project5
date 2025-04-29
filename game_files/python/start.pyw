@@ -110,26 +110,64 @@ pyxel.images[1].load(0, 0, "../resources/tiled/jeux_tuiles/lettres2.png")
 
 
 
+# liste des datas pour les cartes
 global liste_datas_cartes
 liste_datas_cartes = {
-    "demarrage_1" : fct.json_read("../resources/tiled/json/demarrage/demarrage1.json"),
-    "demarrage_2" : fct.json_read("../resources/tiled/json/demarrage/demarrage2.json"),
-    "demarrage_3" : fct.json_read("../resources/tiled/json/demarrage/demarrage3.json"),
-    "demarrage_4" : fct.json_read("../resources/tiled/json/demarrage/demarrage4.json"),
+    "demarrage_1" : [
+        fct.json_read("../resources/tiled/json/demarrage/demarrage1.json"),
+        [
+            "../resources/tiled/jeux_tuiles/lettres1.png",
+            "../resources/tiled/jeux_tuiles/lettres2.png"
+        ]
+    ],
+    "demarrage_2" : [
+        fct.json_read("../resources/tiled/json/demarrage/demarrage2.json"),
+        [
+            "../resources/tiled/jeux_tuiles/lettres1.png",
+            "../resources/tiled/jeux_tuiles/lettres2.png"
+        ]
+    ],
+    "demarrage_3" : [
+        fct.json_read("../resources/tiled/json/demarrage/demarrage3.json"),
+        [
+            "../resources/tiled/jeux_tuiles/lettres1.png",
+            "../resources/tiled/jeux_tuiles/lettres2.png"
+        ]
+    ],
+    "demarrage_4" : [
+        fct.json_read("../resources/tiled/json/demarrage/demarrage4.json"),
+        [
+            "../resources/tiled/jeux_tuiles/lettres1.png",
+            "../resources/tiled/jeux_tuiles/lettres2.png"
+        ]
+    ],
     "menu_principal" : [
         fct.json_read("../resources/tiled/json/menu_principal.json"),
-        "../resources/tiled/jeux_tuiles/decor.png"
-        ],
+        [
+            "../resources/tiled/jeux_tuiles/decor.png",
+        ]
+    ],
     "map" : [
         fct.json_read("../resources/tiled/json/map.json"),
-        "../resources/tiled/jeux_tuiles/decor.png"
-        ],
-    "objects" : "../resources/tiled/jeux_tuiles/objects.png"
+        [
+            "../resources/tiled/jeux_tuiles/map.png",
+        ]
+    ]
 }
 
 
 
+# liste des data pour les objects
+global liste_datas_objects
+liste_datas_objects = {
+    "curseur" : [
+        "../resources/tiled/jeux_tuiles/objects.png",
+        0
+    ]
+}
 
 
+
+# lancement de l'instance pyxel
 pyxel.fullscreen(recup_option.param("fullscreen"))
 pyxel.run(update, draw)
