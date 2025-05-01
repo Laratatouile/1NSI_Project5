@@ -47,13 +47,10 @@ def update():
 def draw() -> None:
     """ affiche les graphismes """
     # importation des variables
-    global affichage, options_globales, liste_datas_cartes
+    global affichage, options_globales, liste_datas_cartes, liste_datas_objets
 
     # clear
     pyxel.cls(0)
-
-    # affichage de la souris
-    curseur.draw(options_globales, liste_datas_cartes)
 
     # si je suis sur l'ecran de demarrage
     if options_globales["whereami"] == "start":
@@ -62,6 +59,9 @@ def draw() -> None:
     # si je suis sur l'ecran principal
     elif options_globales["whereami"] == "menu_principal":
         menu_principal.draw(liste_datas_cartes["menu_principal"])
+
+    # affichage de la souris
+    curseur.draw(options_globales, liste_datas_objets)
 
     return None
 
@@ -158,8 +158,8 @@ liste_datas_cartes = {
 
 
 # liste des data pour les objects
-global liste_datas_objects
-liste_datas_objects = {
+global liste_datas_objets
+liste_datas_objets = {
     "curseur" : [
         "../resources/tiled/jeux_tuiles/objects.png",
         0

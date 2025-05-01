@@ -18,7 +18,6 @@ def draw_carte(data_carte:dict) -> None:
         
         # si c un texte
         if objects == "textes":
-            img = 0
             pyxel.images[0].load(0, 0, "../resources/tiled/jeux_tuiles/lettres1.png")
             pyxel.images[1].load(0, 0, "../resources/tiled/jeux_tuiles/lettres2.png")
         # si c'est une partie de L'UI
@@ -36,14 +35,13 @@ def draw_carte(data_carte:dict) -> None:
 
                 tuile %= 25
 
-
                 u = tuile % 5 * tile_width
                 v = tuile // 5 * tile_height
 
                 pyxel.blt(
                     x * tile_width + decalage_x,
                     y * tile_height + decalage_y,
-                    (img if tuile < 25 else img+1),
+                    (0 if tuile < 25 else 1),
                     u,
                     (v if tuile < 25 else v-25),
                     tile_width,
@@ -52,8 +50,8 @@ def draw_carte(data_carte:dict) -> None:
 
 
 
-def draw_object(data_carte:dict, id_tuile:int, x:int, y:int) -> None:
-    pyxel.images[2].load(0, 0, data_carte)
-    pyxel.blt(x, y, id_tuile % 5, id_tuile // 5, 2, 50, 50)
+def draw_object(data_objet:dict, x:int, y:int) -> None:
+    pyxel.images[2].load(0, 0, data_objet[0])
+    pyxel.blt(x, y, 2,           data_objet[1] % 5, data_objet[1] // 5, 50, 50)
     return None
 
