@@ -159,8 +159,8 @@
     "project": "game.tiled-project",
     "property.type": "bool",
     "recentFiles": [
-        "json/map.json",
         "decor.tsx",
+        "json/map.json",
         "objects.tsx",
         "json/menu_principal.json",
         "json/objects.json",

@@ -1,7 +1,7 @@
 import pyxel
 
 
-def draw_carte(data_carte:dict) -> None:
+def draw_carte(data_carte:dict, options_map:dict=None) -> None:
     """ Affiche la carte à l'écran en utilisant les données de Tiled et Pyxel """
     for i in range(len(data_carte[0]["layers"])):
         # calcul des differentes variables pour l'affichage
@@ -18,14 +18,15 @@ def draw_carte(data_carte:dict) -> None:
         
         # si c un texte
         if objects == "textes":
-            pyxel.images[0].load(0, 0, "../resources/tiled/jeux_tuiles/lettres1.png")
-            pyxel.images[1].load(0, 0, "../resources/tiled/jeux_tuiles/lettres2.png")
+            pyxel.images[0].load(0, 0, "./resources/tiled/jeux_tuiles/lettres1.png")
+            pyxel.images[1].load(0, 0, "./resources/tiled/jeux_tuiles/lettres2.png")
         # si c'est une partie de L'UI
         elif objects == "UI":
-            pyxel.images[0].load(0, 0, "../resources/tiled/jeux_tuiles/UI.png")
+            pyxel.images[0].load(0, 0, "./resources/tiled/jeux_tuiles/UI.png")
         elif objects == "decor":
-            pyxel.images[0].load(0, 0, "../resources/tiled/jeux_tuiles/decor.png")
-
+            pyxel.images[0].load(0, 0, "./resources/tiled/jeux_tuiles/decor.png")
+            pyxel.colors[15] = 0x449717
+                            
 
         # affichage des tuiles une par une
         for y in range(height):
@@ -35,6 +36,7 @@ def draw_carte(data_carte:dict) -> None:
                     continue
                 tuile -= 1
                 tuile -= i*25
+
 
                 u = tuile % 5 * tile_width
                 v = tuile // 5 * tile_height
@@ -48,6 +50,20 @@ def draw_carte(data_carte:dict) -> None:
                     tile_width,
                     tile_height,
                     colkey=0
+                    )
+        
+        if objects == "decor":
+            listes_pommes = options_map["listes_pommes"]
+            for pomme in listes_pommes["liste_de_base"]:
+                pyxel.blt(
+                pomme[0],
+                pomme[1],
+                0,
+                (200 if pomme in listes_pommes["pommes_vierges"] else 100),
+                (50 if pomme in listes_pommes["pommes_vierges"] else 100),
+                tile_width,
+                tile_height,
+                colkey=0
                     )
     return None
 

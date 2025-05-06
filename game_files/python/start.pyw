@@ -68,7 +68,7 @@ def draw() -> None:
 
     # si je suis sur le jeu
     elif options_globales["whereami"] == "jeu":
-        personnage.draw(options_globales, liste_datas_objets, liste_datas_cartes)
+        personnage.draw(options_globales, liste_datas_objets, liste_datas_cartes, options_map)
 
     # affichage de la souris
     curseur.draw(options_globales, liste_datas_objets)
@@ -108,66 +108,47 @@ options_globales = {
 
 
 
-
-# parametres de la fenetre
-pyxel.init(
-    recup_option.param("taille_fenetre_x"),
-    recup_option.param("taille_fenetre_y"),
-    "La pomme de terre c'est super",
-    fps=options_globales["fenetre"]["fps"],
-    quit_key=pyxel.KEY_AC_BOOKMARKS
-    )
-
-
-
-### ___ initialisation des images ___ ###
-# lettres et chiffres
-pyxel.images[0].load(0, 0, "../resources/tiled/jeux_tuiles/lettres1.png")
-pyxel.images[1].load(0, 0, "../resources/tiled/jeux_tuiles/lettres2.png")
-
-
-
 # liste des datas pour les cartes
 global liste_datas_cartes
 liste_datas_cartes = {
     "demarrage_1" : [
-        fct.json_read("../resources/tiled/json/demarrage/demarrage1.json"),
+        fct.json_read("./resources/tiled/json/demarrage/demarrage1.json"),
         [
-            "../resources/tiled/jeux_tuiles/lettres1.png",
-            "../resources/tiled/jeux_tuiles/lettres2.png"
+            "./resources/tiled/jeux_tuiles/lettres1.png",
+            "./resources/tiled/jeux_tuiles/lettres2.png"
         ]
     ],
     "demarrage_2" : [
-        fct.json_read("../resources/tiled/json/demarrage/demarrage2.json"),
+        fct.json_read("./resources/tiled/json/demarrage/demarrage2.json"),
         [
-            "../resources/tiled/jeux_tuiles/lettres1.png",
-            "../resources/tiled/jeux_tuiles/lettres2.png"
+            "./resources/tiled/jeux_tuiles/lettres1.png",
+            "./resources/tiled/jeux_tuiles/lettres2.png"
         ]
     ],
     "demarrage_3" : [
-        fct.json_read("../resources/tiled/json/demarrage/demarrage3.json"),
+        fct.json_read("./resources/tiled/json/demarrage/demarrage3.json"),
         [
-            "../resources/tiled/jeux_tuiles/lettres1.png",
-            "../resources/tiled/jeux_tuiles/lettres2.png"
+            "./resources/tiled/jeux_tuiles/lettres1.png",
+            "./resources/tiled/jeux_tuiles/lettres2.png"
         ]
     ],
     "demarrage_4" : [
-        fct.json_read("../resources/tiled/json/demarrage/demarrage4.json"),
+        fct.json_read("./resources/tiled/json/demarrage/demarrage4.json"),
         [
-            "../resources/tiled/jeux_tuiles/lettres1.png",
-            "../resources/tiled/jeux_tuiles/lettres2.png"
+            "./resources/tiled/jeux_tuiles/lettres1.png",
+            "./resources/tiled/jeux_tuiles/lettres2.png"
         ]
     ],
     "menu_principal" : [
-        fct.json_read("../resources/tiled/json/menu_principal.json"),
+        fct.json_read("./resources/tiled/json/menu_principal.json"),
         [
-            "../resources/tiled/jeux_tuiles/decor.png",
+            "./resources/tiled/jeux_tuiles/decor.png",
         ]
     ],
     "map" : [
-        fct.json_read("../resources/tiled/json/map.json"),
+        fct.json_read("./resources/tiled/json/map.json"),
         [
-            "../resources/tiled/jeux_tuiles/map.png",
+            "./resources/tiled/jeux_tuiles/map.png",
         ]
     ]
 }
@@ -178,15 +159,45 @@ liste_datas_cartes = {
 global liste_datas_objets
 liste_datas_objets = {
     "curseur" : [
-        "../resources/tiled/jeux_tuiles/objects.png",
+        "./resources/tiled/jeux_tuiles/objects.png",
         0
     ],
     "joueur" : [
-        "../resources/tiled/jeux_tuiles/patates.png",
+        "./resources/tiled/jeux_tuiles/patates.png",
         0
     ]
 }
 
+global options_map
+options_map = {
+    "listes_pommes" : {
+        "liste_de_base" : [
+            [100, 150],
+            [750, 850],
+            [100, 1350],
+            [800, 1950]
+        ],
+        "pommes_vierges": [
+            [100, 150],
+            [750, 850],
+            [100, 1350],
+            [800, 1950]
+        ]
+    }
+}
+
+
+
+
+
+# parametres de la fenetre
+pyxel.init(
+    recup_option.param("taille_fenetre_x"),
+    recup_option.param("taille_fenetre_y"),
+    "La pomme de terre c'est super",
+    fps=options_globales["fenetre"]["fps"],
+    quit_key=pyxel.KEY_AC_BOOKMARKS
+    )
 
 
 # lancement de l'instance pyxel

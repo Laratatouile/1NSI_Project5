@@ -1,6 +1,8 @@
 from datetime import datetime
 from json import load, dump
 
+import os
+
 ### ___ affichage dans la comsole simplifié ___ ###
 def logs(Loader, Gravity, Text):
     """
@@ -19,18 +21,25 @@ def logs(Loader, Gravity, Text):
 
 
 ### ___ getion des fichiers json ___ ###
-def json_read(file:str):
+def json_read(path:str):
     """
         chargement du fichier a ouvrir et retour sous forme de dictionnaire
         Si data renvoie data
         Sinon renvoie None
     """
+    while os.listdir()[0] != ".git":
+        os.chdir("../")
+    os.chdir("game_files")
     try:
-        data = load(open(file, "r"))
+        data = load(open(path, "r"))
     except:
+        print(os.listdir())
+        print(path)
         logs("JsonReader", "INFO", "Le fichier n'a pas été lu")
         return None
     return data
+
+
 
 def json_save(data:dict, file:str) -> None:
     """
