@@ -11,6 +11,7 @@ import fonctions.fonctions as fct
 import objects.demarrage as demarrage
 import objects.menu_principal as menu_principal
 import objects.curseur as curseur
+import objects.personnage as personnage
 
 
 
@@ -34,8 +35,13 @@ def update():
     if options_globales["whereami"] == "start":
         options_globales, affichage = demarrage.update(options_globales, affichage)
 
+    # si je suis sur le menu principal
     elif options_globales["whereami"] == "menu_principal":
         options_globales = menu_principal.update(options_globales)
+
+    # si je suis sur le jeu
+    elif options_globales["whereami"] == "jeu":
+        options_globales = personnage.update(options_globales)
 
     return None
 
@@ -59,6 +65,10 @@ def draw() -> None:
     # si je suis sur l'ecran principal
     elif options_globales["whereami"] == "menu_principal":
         menu_principal.draw(liste_datas_cartes["menu_principal"])
+
+    # si je suis sur le jeu
+    elif options_globales["whereami"] == "jeu":
+        personnage.draw(options_globales, liste_datas_objets, liste_datas_cartes)
 
     # affichage de la souris
     curseur.draw(options_globales, liste_datas_objets)
@@ -86,6 +96,13 @@ options_globales = {
         "x" : 0,
         "y" : 0
     },
+    "player" : {
+        "x" : 450,
+        "y" : 2450,
+        "niveau" : 1,
+        "puissance_boost" : 1,
+        "attaque" : 0
+    }
 }
 
 
@@ -94,8 +111,8 @@ options_globales = {
 
 # parametres de la fenetre
 pyxel.init(
-    options_globales["fenetre"]["x"],
-    options_globales["fenetre"]["y"],
+    recup_option.param("taille_fenetre_x"),
+    recup_option.param("taille_fenetre_y"),
     "La pomme de terre c'est super",
     fps=options_globales["fenetre"]["fps"],
     quit_key=pyxel.KEY_AC_BOOKMARKS
@@ -162,6 +179,10 @@ global liste_datas_objets
 liste_datas_objets = {
     "curseur" : [
         "../resources/tiled/jeux_tuiles/objects.png",
+        0
+    ],
+    "joueur" : [
+        "../resources/tiled/jeux_tuiles/patates.png",
         0
     ]
 }

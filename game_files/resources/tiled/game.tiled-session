@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "",
+    "activeFile": "decor.tsx",
     "console.history": [
         "ls",
         "list"
@@ -14,6 +14,9 @@
         "."
     ],
     "fileStates": {
+        ":/automap-tiles.tsx": {
+            "scaleInDock": 1
+        },
         "UI.tsx": {
             "dynamicWrapping": false,
             "scaleInDock": 1,
@@ -63,12 +66,20 @@
                 "y": 249.6790757381258
             }
         },
+        "json/map.json": {
+            "scale": 0.33,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 531.8181818181818,
+                "y": 1310.6060606060605
+            }
+        },
         "json/menu_principal.json": {
             "scale": 0.7789999999999999,
             "selectedLayer": 0,
             "viewCenter": {
                 "x": 449.93581514762525,
-                "y": 247.11168164313221
+                "y": 295.89216944801024
             }
         },
         "json/objects.json": {
@@ -135,17 +146,23 @@
     "last.exportedFilePath": "C:/Users/Eleve/Documents/GitHub/1NSI_Project5/game_files/resources/tiled/json",
     "last.externalTilesetPath": "C:/Users/micro/Documents/GitHub/1NSI_Project5/game_files/resources/tiled/jeux_tuiles",
     "last.imagePath": "C:/Users/Eleve/Documents/GitHub/1NSI_Project5/game_files/resources/tiled/jeux_tuiles",
-    "map.height": 5,
+    "map.height": 50,
     "map.lastUsedExportFilter": "Fichiers de carte JSON (*.tmj *.json)",
-    "map.lastUsedFormat": "tmx",
+    "map.lastUsedFormat": "json",
     "map.tileHeight": 50,
     "map.tileWidth": 50,
-    "map.width": 5,
+    "map.width": 18,
     "openFiles": [
+        "json/map.json",
+        "decor.tsx"
     ],
     "project": "game.tiled-project",
+    "property.type": "bool",
     "recentFiles": [
+        "json/map.json",
+        "decor.tsx",
         "objects.tsx",
+        "json/menu_principal.json",
         "json/objects.json",
         "lettres1.tsx",
         "lettres2.tsx",
@@ -153,10 +170,7 @@
         "json/demarrage/demarrage2.json",
         "json/demarrage/demarrage3.json",
         "json/demarrage/demarrage4.json",
-        "json/menu_principal.json",
-        "carte.tmx",
-        "menu_principal.tmx",
-        "decor.tsx"
+        "carte.tmx"
     ],
     "tileset.lastUsedFilter": "Tous les Fichiers (*)",
     "tileset.lastUsedFormat": "tsx",

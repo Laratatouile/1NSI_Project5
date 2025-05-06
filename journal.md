@@ -16,7 +16,11 @@ creation de la carte de jeu
 Creation des lettres
 Creation du fichier d'affichage des cartes
 
-
+# semaine lycee 2
+créarion du curseur
+résolution des bugs graphiques
+création du fichier de jeu
+recéation de la carte de jeu
 
 
 # autres
