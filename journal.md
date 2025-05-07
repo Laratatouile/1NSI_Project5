@@ -22,6 +22,13 @@ résolution des bugs graphiques
 création du fichier de jeu
 recéation de la carte de jeu
 
+# semain lycee3 
+implémentation de la carte de jeu
+résolution de bugs
+debut de l'ajout des IA pour les ennemis
+
+
+
 
 # autres
 Les textes sont de A à X dans l'image 0 et de Z à 9 dans la 1

@@ -12,6 +12,7 @@ import objects.demarrage as demarrage
 import objects.menu_principal as menu_principal
 import objects.curseur as curseur
 import objects.personnage as personnage
+import objects.monstres as monstres
 
 
 
@@ -19,7 +20,7 @@ import objects.personnage as personnage
 def update():
     """ calcule ce qu'il y a afficher """
     # importation des variables
-    global affichage, options_globales, options_map
+    global affichage, options_globales, options_map, model
 
 
     # tmp
@@ -42,6 +43,7 @@ def update():
     # si je suis sur le jeu
     elif options_globales["whereami"] == "jeu":
         options_globales, options_map = personnage.update(options_globales, options_map)
+        options_globales = monstres.update(options_globales, model)
 
     return None
 
@@ -81,7 +83,7 @@ def draw() -> None:
 
 
 # variables
-global options_globales, affichage, options_jeu
+global options_globales, affichage, model, liste_datas_cartes, options_map, liste_datas_objets
 
 affichage = 0
 
@@ -104,14 +106,25 @@ options_globales = {
         "attaque" : 0,
         "modif_terrain" : 1,
         "vie" : 100
-    }
+    },
+    "monstres": [
+        {
+            "etat": [1, 2, 1, 2, 30, 10],  # [x_perso, y_perso, dir_lave, dist_lave, x_joueur, y_joueur]
+            "position": {"x": 100, "y": 200},
+            "recompense": 0.5
+        },
+        {
+            "etat": [7, 8, 0, 3, 6, 3],
+            "position": {"x": 300, "y": 400},
+            "recompense": -1.0
+        }
+    ]
 }
 
 
 
 
 # liste des datas pour les cartes
-global liste_datas_cartes
 liste_datas_cartes = {
     "demarrage_1" : [
         fct.json_read("./resources/tiled/json/demarrage/demarrage1.json"),
@@ -158,7 +171,6 @@ liste_datas_cartes = {
 
 
 # liste des data pour les objects
-global liste_datas_objets
 liste_datas_objets = {
     "curseur" : [
         "./resources/tiled/jeux_tuiles/objects.png",
@@ -170,7 +182,6 @@ liste_datas_objets = {
     ]
 }
 
-global options_map
 options_map = {
     "listes_pommes" : {
         "liste_de_base" : [
@@ -188,8 +199,7 @@ options_map = {
     }
 }
 
-
-
+model = monstres.initialiser()
 
 
 # parametres de la fenetre
