@@ -19,7 +19,7 @@ import objects.personnage as personnage
 def update():
     """ calcule ce qu'il y a afficher """
     # importation des variables
-    global affichage, options_globales
+    global affichage, options_globales, options_map
 
 
     # tmp
@@ -41,7 +41,7 @@ def update():
 
     # si je suis sur le jeu
     elif options_globales["whereami"] == "jeu":
-        options_globales = personnage.update(options_globales)
+        options_globales, options_map = personnage.update(options_globales, options_map)
 
     return None
 
@@ -101,7 +101,9 @@ options_globales = {
         "y" : 2450,
         "niveau" : 1,
         "puissance_boost" : 1,
-        "attaque" : 0
+        "attaque" : 0,
+        "modif_terrain" : 1,
+        "vie" : 100
     }
 }
 

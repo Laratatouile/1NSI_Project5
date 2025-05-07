@@ -37,6 +37,11 @@ def draw_carte(data_carte:dict, options_map:dict=None) -> None:
                 tuile -= 1
                 tuile -= i*25
 
+                if objects == "decor" and (tuile == 0 or tuile == 3):
+                    if 9 < pyxel.frame_count % 30 < 20:
+                        tuile += 1
+                    elif 19 < pyxel.frame_count % 30 < 30:
+                        tuile += 2
 
                 u = tuile % 5 * tile_width
                 v = tuile // 5 * tile_height
@@ -53,20 +58,18 @@ def draw_carte(data_carte:dict, options_map:dict=None) -> None:
                     )
         
         if objects == "decor":
-            listes_pommes = options_map["listes_pommes"]
-            for pomme in listes_pommes["liste_de_base"]:
+            for pomme in options_map["listes_pommes"]["liste_de_base"]:
                 pyxel.blt(
                 pomme[0],
                 pomme[1],
                 0,
-                (200 if pomme in listes_pommes["pommes_vierges"] else 100),
-                (50 if pomme in listes_pommes["pommes_vierges"] else 100),
+                (200 if pomme in options_map["listes_pommes"]["pommes_vierges"] else 100),
+                (50 if pomme in options_map["listes_pommes"]["pommes_vierges"] else 100),
                 tile_width,
                 tile_height,
                 colkey=0
-                    )
+                )
     return None
-
 
 
 def draw_object(data_objet:dict, x:int, y:int) -> None:
