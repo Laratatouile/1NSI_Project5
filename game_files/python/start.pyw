@@ -3,8 +3,8 @@ import pyxel
 
 # importation des fonctions
 import fonctions.touches_param as recup_option
-import fonctions.chiffrement as chiffrement
 import fonctions.fonctions as fct
+import fonctions.sauvegarde  as sauvegarde
 
 
 # importation des objects
@@ -20,25 +20,33 @@ import objects.monstres as monstres
 def update():
     """ calcule ce qu'il y a afficher """
     # importation des variables
-    global affichage, options_globales, options_map, model
+    global affichage, options_globales, options_map, model, timer
+    timer = 0
+    timer = max(timer-1, 0)
 
+    # detection de la mort et du compte a rebours
+    if timer == 0 and options_globales["player"]["mort"] != False:
+        timer = 5 * recup_option.param("fps")
 
-    # tmp
+    elif timer == 0 and options_globales["player"]["mort"] != False:
+        sauvegarde.save(options_globales, model)
+    
+
+    # quitter
     if pyxel.btn(recup_option.touche("arret")):
-        pyxel.quit()
+        sauvegarde.save(options_globales, model)
 
 
     # affichage de la souris
     options_globales = curseur.update(options_globales)
 
-
-    # si je suis sur l'ecran de demarrage
-    if options_globales["whereami"] == "start":
-        options_globales, affichage = demarrage.update(options_globales, affichage)
-
     # si je suis sur le menu principal
-    elif options_globales["whereami"] == "menu_principal":
+    if options_globales["whereami"] == "menu_principal":
         options_globales = menu_principal.update(options_globales)
+    
+    # si je suis sur l'ecran de demarrage
+    elif options_globales["whereami"] == "start":
+        options_globales, affichage = demarrage.update(options_globales, affichage)
 
     # si je suis sur le jeu
     elif options_globales["whereami"] == "jeu":
@@ -113,11 +121,6 @@ options_globales = {
         {
             "etat": [1, 2, 1, 2, 30, 10],  # [x_perso, y_perso, dir_lave, dist_lave, x_joueur, y_joueur]
             "position": {"x": 800, "y": 2300},
-            "recompense": 0
-        },
-        {
-            "etat": [7, 8, 0, 3, 6, 3],
-            "position": {"x": 100, "y": 2300},
             "recompense": 0
         }
     ]

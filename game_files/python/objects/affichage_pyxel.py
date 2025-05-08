@@ -53,8 +53,7 @@ def draw_carte(data_carte:dict, options_map:dict=None) -> None:
                     u,
                     (v if tuile < 25 else v-250),
                     tile_width,
-                    tile_height,
-                    colkey=0
+                    tile_height
                     )
         
         if objects == "decor":

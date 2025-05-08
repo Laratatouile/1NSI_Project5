@@ -6,7 +6,7 @@ def update(options_globales:dict) -> dict:
     options_globales["curseur"]["x"] = pyxel.mouse_x
     options_globales["curseur"]["y"] = pyxel.mouse_y
 
-    if pyxel.btnr(pyxel.MOUSE_BUTTON_LEFT):
+    if pyxel.btnp(pyxel.MOUSE_BUTTON_LEFT):
         if 50 < pyxel.mouse_x < 350:
             if 50 < pyxel.mouse_y < 150:
                 options_globales["whereami"] = "jeu"

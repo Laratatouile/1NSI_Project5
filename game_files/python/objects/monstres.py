@@ -2,9 +2,11 @@ import torch
 import torch.nn.functional as F
 import torch.optim as optim
 import os
-import json
 import objects.affichage_pyxel as affichage_pyxel
 import math
+import fonctions.chiffrement as chiffrement
+import random
+import pyxel
 
 
 def initialiser() -> dict:
@@ -12,10 +14,9 @@ def initialiser() -> dict:
     # si on a un model pret
     if os.listdir("./resources/torch") != []:
         # detection du nom du model
-        nom_model = os.listdir()[0].split(".")[0]
-        print(nom_model)
+        nom_model = os.listdir("./resources/torch")[0].split(".")[0]
         # recherche des variables
-        var_model = json.load(open(f"./resources/torch/{nom_model}.json", "r"))
+        var_model = chiffrement.fichier_ouvrir(f"./resources/torch/{nom_model}.json", 8)
         model_entree = torch.nn.Linear(var_model["taille_entree"], var_model["taille_cachee"])
         model_sortie = torch.nn.Linear(var_model["taille_cachee"], var_model["taille_sortie"])
         learning_rate = var_model["learning_rate"]
@@ -57,6 +58,11 @@ etat_prec = {}
 action_prec = {}
 
 def update(options_globales: dict, model: dict) -> dict:
+    model["entree"].train()
+    model["sortie"].train()
+
+    print(options_globales["monstres"][0]["recompense"])
+
     if "monstres" not in options_globales:
         options_globales["monstres"] = []
         options_globales["monstres"].append({
@@ -73,13 +79,29 @@ def update(options_globales: dict, model: dict) -> dict:
         etat_actuel = torch.tensor(monstre["etat"], dtype=torch.float32)
 
         # Apprentissage si possible
-        if i in etat_prec and i in action_prec and "recompense" in monstre:
+        if i in etat_prec and "recompense" in monstre:
             with torch.no_grad():
-                valeur_futur = torch.max(model_forward(etat_actuel, model))
-                cible = monstre["recompense"] + 0.99 * valeur_futur
+                pred_suiv = model_forward(etat_actuel, model)
 
-            pred = model_forward(etat_prec[i], model)[action_prec[i]]
-            perte = model["perte"](pred, cible)
+            # Cible = sorties précédentes légèrement modifiées par la récompense
+            cible = model_forward(etat_prec[i], model).clone().detach()
+
+            # Appliquer la récompense sur **toutes les sorties**
+            if do_attaque:
+                cible[0] += monstre["recompense"]
+            if droite:
+                cible[1] += monstre["recompense"]
+            if gauche:
+                cible[2] += monstre["recompense"]
+            if haut:
+                cible[3] += monstre["recompense"]
+            if bas:
+                cible[4] += monstre["recompense"]
+
+            # Prédiction actuelle
+            pred = model_forward(etat_prec[i], model)
+
+            perte = model["perte"](sortie, cible)
 
             model["optimiser"].zero_grad()
             perte.backward()
@@ -89,15 +111,27 @@ def update(options_globales: dict, model: dict) -> dict:
         with torch.no_grad():
             sortie = model_forward(etat_actuel, model)
 
-        # Seuil pour activer une sortie (à ajuster si nécessaire)
-        SEUIL = 0.5
+        monstre["recompense"] = 0
 
-        # Drapeaux d’action
-        do_attaque = sortie[0].item() > SEUIL
-        droite     = sortie[1].item() > SEUIL
-        gauche     = sortie[2].item() > SEUIL
-        haut       = sortie[3].item() > SEUIL
-        bas        = sortie[4].item() > SEUIL
+        # Valeur de epsilon (pourcentage d'exploration)
+        EPSILON = 0.3 - (0.0001 * pyxel.frame_count())
+
+        if random.random() < EPSILON:
+            # Choix aléatoire (exploration)
+            do_attaque = random.choice([True, False])
+            droite = random.choice([True, False])
+            gauche = random.choice([True, False])
+            haut = random.choice([True, False])
+            bas = random.choice([True, False])
+        else:
+            # Choix basé sur la sortie du modèle
+            SEUIL = 0.5
+            do_attaque = sortie[0].item() > SEUIL
+            droite     = sortie[1].item() > SEUIL
+            gauche     = sortie[2].item() > SEUIL
+            haut       = sortie[3].item() > SEUIL
+            bas        = sortie[4].item() > SEUIL
+
 
 
         # Si la position n'existe pas encore
@@ -107,6 +141,7 @@ def update(options_globales: dict, model: dict) -> dict:
         vitesse = 2
 
         anc_dist_player = math.sqrt(abs(monstre["position"]["x"] - joueur_x)**2 + abs(monstre["position"]["y"] - joueur_y)**2)
+
 
         if droite:
             monstre["position"]["x"] += vitesse
@@ -129,15 +164,29 @@ def update(options_globales: dict, model: dict) -> dict:
                 monstre["position"]["y"] = 0
                 monstre["recompense"] -= 10
 
+        dist_player = math.sqrt(abs(monstre["position"]["x"] - joueur_x)**2 + abs(monstre["position"]["y"] - joueur_y)**2)
+        
         if do_attaque:
             monstre["attaque"] = True
-        
-        dist_player = math.sqrt(abs(monstre["position"]["x"] - joueur_x)**2 + abs(monstre["position"]["y"] - joueur_y)**2)
+            if dist_player < 20:
+                monstre["recompense"] += 100
+                options_globales["player"]["vie"] = max(options_globales["player"]["vie"] - 10, 0)
+                if options_globales["player"]["vie"] == 0:
+                    options_globales["player"]["mort"] = "zombie"
 
         if anc_dist_player > dist_player:
             monstre["recompense"] += 1
-        else:
-            monstre["recompense"] -= 1
+
+
+        cible = torch.zeros_like(sortie)
+        cible[0] = 1 if do_attaque else 0
+        cible[1] = 1 if droite else 0
+        cible[2] = 1 if gauche else 0
+        cible[3] = 1 if haut else 0
+        cible[4] = 1 if bas else 0
+
+        cible *= monstre["recompense"]
+
 
 
     return options_globales
