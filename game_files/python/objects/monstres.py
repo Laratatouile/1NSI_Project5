@@ -3,6 +3,8 @@ import torch.nn.functional as F
 import torch.optim as optim
 import os
 import json
+import objects.affichage_pyxel as affichage_pyxel
+import math
 
 
 def initialiser() -> dict:
@@ -23,7 +25,7 @@ def initialiser() -> dict:
         # infos => x_perso, y_perso, direction lave, distance_lave, x_joueur, y_joueur
         taille_entree = 6
         # mvts => direction, attaque
-        taille_sortie = 2
+        taille_sortie = 5
         # nombre de couches de neurones caches
         taille_cachee = 64
         model_entree = torch.nn.Linear(taille_entree, taille_cachee)
@@ -54,17 +56,23 @@ def model_forward(x, model:dict) -> any:
 etat_prec = {}
 action_prec = {}
 
-
-def update(options_globales:dict, model:dict) -> dict:
-    """ Gère tous les monstres du tour (liste d'objets) """
+def update(options_globales: dict, model: dict) -> dict:
     if "monstres" not in options_globales:
+        options_globales["monstres"] = []
+        options_globales["monstres"].append({
+            "etat": [7, 8, 0, 3, 6, 3],
+            "position": {"x": 800, "y": 2300},
+            "recompense": 0
+        })
         return options_globales
 
+    joueur_x = options_globales["player"]["x"]
+    joueur_y = options_globales["player"]["y"]
+
     for i, monstre in enumerate(options_globales["monstres"]):
-        # Récupération de l'état actuel
         etat_actuel = torch.tensor(monstre["etat"], dtype=torch.float32)
 
-        # Apprentissage si récompense disponible
+        # Apprentissage si possible
         if i in etat_prec and i in action_prec and "recompense" in monstre:
             with torch.no_grad():
                 valeur_futur = torch.max(model_forward(etat_actuel, model))
@@ -77,21 +85,68 @@ def update(options_globales:dict, model:dict) -> dict:
             perte.backward()
             model["optimiser"].step()
 
-        # Choisir une action
+        # Choix de l'action
         with torch.no_grad():
-            q_vals = model_forward(etat_actuel, model)
-            action = torch.argmax(q_vals).item()
+            sortie = model_forward(etat_actuel, model)
 
-        # Mémoriser état/action pour la prochaine récompense
-        etat_prec[i] = etat_actuel
-        action_prec[i] = action
+        # Seuil pour activer une sortie (à ajuster si nécessaire)
+        SEUIL = 0.5
 
-        # Stocker l'action dans le monstre
-        monstre["action"] = action
-        print(action)
+        # Drapeaux d’action
+        do_attaque = sortie[0].item() > SEUIL
+        droite     = sortie[1].item() > SEUIL
+        gauche     = sortie[2].item() > SEUIL
+        haut       = sortie[3].item() > SEUIL
+        bas        = sortie[4].item() > SEUIL
 
-        # S'assurer qu'il y a une position (évite crash si oublié)
+
+        # Si la position n'existe pas encore
         if "position" not in monstre:
-            monstre["position"] = {"x": 0, "y": 0}
+            monstre["position"] = {"x": 800, "y": 2300}
+        # Appliquer le déplacement
+        vitesse = 2
+
+        anc_dist_player = math.sqrt(abs(monstre["position"]["x"] - joueur_x)**2 + abs(monstre["position"]["y"] - joueur_y)**2)
+
+        if droite:
+            monstre["position"]["x"] += vitesse
+            if monstre["position"]["x"] > 850:
+                monstre["position"]["x"] = 850
+                monstre["recompense"] -= 10
+        if gauche:
+            monstre["position"]["x"] -= vitesse
+            if monstre["position"]["x"] < 0:
+                monstre["position"]["x"] = 0
+                monstre["recompense"] -= 10
+        if bas:
+            monstre["position"]["y"] += vitesse
+            if monstre["position"]["y"] > 2450:
+                monstre["position"]["y"] = 2450
+                monstre["recompense"] -= 10
+        if haut:
+            monstre["position"]["y"] -= vitesse
+            if monstre["position"]["y"] < 0:
+                monstre["position"]["y"] = 0
+                monstre["recompense"] -= 10
+
+        if do_attaque:
+            monstre["attaque"] = True
+        
+        dist_player = math.sqrt(abs(monstre["position"]["x"] - joueur_x)**2 + abs(monstre["position"]["y"] - joueur_y)**2)
+
+        if anc_dist_player > dist_player:
+            monstre["recompense"] += 1
+        else:
+            monstre["recompense"] -= 1
+
 
     return options_globales
+
+
+
+
+def draw(options_globales:dict, liste_datas_objets:dict) -> None:
+    """ affiche les monstres """
+    for monstre in options_globales["monstres"]:
+        affichage_pyxel.draw_object(liste_datas_objets["monstre"], monstre["position"]["x"], monstre["position"]["y"])
+    return None

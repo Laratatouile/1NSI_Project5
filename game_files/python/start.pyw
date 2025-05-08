@@ -24,7 +24,7 @@ def update():
 
 
     # tmp
-    if pyxel.btn(pyxel.KEY_T):
+    if pyxel.btn(recup_option.touche("arret")):
         pyxel.quit()
 
 
@@ -71,6 +71,7 @@ def draw() -> None:
     # si je suis sur le jeu
     elif options_globales["whereami"] == "jeu":
         personnage.draw(options_globales, liste_datas_objets, liste_datas_cartes, options_map)
+        monstres.draw(options_globales, liste_datas_objets)
 
     # affichage de la souris
     curseur.draw(options_globales, liste_datas_objets)
@@ -105,18 +106,19 @@ options_globales = {
         "puissance_boost" : 1,
         "attaque" : 0,
         "modif_terrain" : 1,
-        "vie" : 100
+        "vie" : 100,
+        "mort" : False
     },
     "monstres": [
         {
             "etat": [1, 2, 1, 2, 30, 10],  # [x_perso, y_perso, dir_lave, dist_lave, x_joueur, y_joueur]
-            "position": {"x": 100, "y": 200},
-            "recompense": 0.5
+            "position": {"x": 800, "y": 2300},
+            "recompense": 0
         },
         {
             "etat": [7, 8, 0, 3, 6, 3],
-            "position": {"x": 300, "y": 400},
-            "recompense": -1.0
+            "position": {"x": 100, "y": 2300},
+            "recompense": 0
         }
     ]
 }
@@ -179,6 +181,18 @@ liste_datas_objets = {
     "joueur" : [
         "./resources/tiled/jeux_tuiles/patates.png",
         0
+    ],
+    "joueur_brule" : [
+        "./resources/tiled/jeux_tuiles/patates.png",
+        1
+    ],
+    "joueur_zombie" : [
+        "./resources/tiled/jeux_tuiles/patates.png",
+        3
+    ],
+    "monstre" : [
+        "./resources/tiled/jeux_tuiles/patates.png",
+        5, 6
     ]
 }
 

@@ -43,11 +43,24 @@ def update(options_globales:dict, options_map:dict) -> dict:
 
 def draw(options_globales:dict, liste_datas_objets:dict, liste_datas_cartes:dict, options_map:dict) -> None:
     affichage_pyxel.draw_carte(liste_datas_cartes["map"], options_map)
-    affichage_pyxel.draw_object(
-        liste_datas_objets["joueur"],
-        options_globales["player"]["x"],
-        options_globales["player"]["y"]
-    )
+    if options_globales["player"]["vie"] != 0:
+        affichage_pyxel.draw_object(
+            liste_datas_objets["joueur"],
+            options_globales["player"]["x"],
+            options_globales["player"]["y"]
+        )
+    elif options_globales["player"]["mort"] == "brule":
+        affichage_pyxel.draw_object(
+            liste_datas_objets["joueur_brule"],
+            options_globales["player"]["x"],
+            options_globales["player"]["y"]
+        )
+    elif options_globales["player"]["mort"] == "zombie":
+        affichage_pyxel.draw_object(
+            liste_datas_objets["joueur_zombie"],
+            options_globales["player"]["x"],
+            options_globales["player"]["y"]
+        )
     return None
 
 
@@ -66,7 +79,8 @@ def recup_terrain(player:dict, options_map:dict) -> tuple:
     # avec la lave
     for case in case_lave:
         if case[0] - 30 < player["x"] < case[0] + 30 and case[1] - 30 < player["y"] < case[1] + 30:
-                player["vie"] -= 50
+                player["vie"] = 0
+                player["mort"] = "brule"
                 player["modif_terrain"] = 0.5
                 return player, options_map
     # avec les pommes

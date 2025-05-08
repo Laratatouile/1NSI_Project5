@@ -74,6 +74,10 @@ def draw_carte(data_carte:dict, options_map:dict=None) -> None:
 
 def draw_object(data_objet:dict, x:int, y:int) -> None:
     pyxel.images[2].load(0, 0, data_objet[0])
-    pyxel.blt(x, y, 2, data_objet[1] % 5, data_objet[1] // 5, 50, 50, colkey=0)
+    pyxel.blt(x, y, 2, (data_objet[1] % 5)*50, (data_objet[1] // 5)*50, 50, 50, colkey=0)
+    try:
+        pyxel.blt(x + 50, y, 2, (data_objet[2] % 5)*50, (data_objet[2] // 5)*50, 50, 50, colkey=0)
+    except:
+        pass
     return None
 
