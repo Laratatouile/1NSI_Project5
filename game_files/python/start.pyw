@@ -224,7 +224,7 @@ pyxel.init(
     recup_option.param("taille_fenetre_x"),
     recup_option.param("taille_fenetre_y"),
     "La pomme de terre c'est super",
-    fps=options_globales["fenetre"]["fps"],
+    fps=240,#options_globales["fenetre"]["fps"],
     quit_key=pyxel.KEY_AC_BOOKMARKS
     )
 

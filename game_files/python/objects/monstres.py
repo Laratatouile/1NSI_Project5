@@ -25,8 +25,8 @@ def initialiser() -> dict:
     else:
         # infos => x_perso, y_perso, direction lave, distance_lave, x_joueur, y_joueur
         taille_entree = 6
-        # mvts => direction, attaque
-        taille_sortie = 5
+        # mvts => direction
+        taille_sortie = 4
         # nombre de couches de neurones caches
         taille_cachee = 64
         model_entree = torch.nn.Linear(taille_entree, taille_cachee)
@@ -61,135 +61,127 @@ def update(options_globales: dict, model: dict) -> dict:
     model["entree"].train()
     model["sortie"].train()
 
-    print(options_globales["monstres"][0]["recompense"])
-
     if "monstres" not in options_globales:
-        options_globales["monstres"] = []
-        options_globales["monstres"].append({
-            "etat": [7, 8, 0, 3, 6, 3],
+        options_globales["monstres"] = [{
+            "etat": [7, 8, 0, 3, 6, 3, 100],  # état initial avec distance approximative
             "position": {"x": 800, "y": 2300},
             "recompense": 0
-        })
+        }]
         return options_globales
 
     joueur_x = options_globales["player"]["x"]
     joueur_y = options_globales["player"]["y"]
 
+    # 🔁 Met à jour la distance IA ↔ joueur dans l'état
+    for monstre in options_globales["monstres"]:
+        x = monstre["position"]["x"]
+        y = monstre["position"]["y"]
+        distance = math.hypot(x - joueur_x, y - joueur_y)
+
+        if len(monstre["etat"]) >= 7:
+            monstre["etat"][6] = distance
+        else:
+            monstre["etat"].append(distance)
+
+    EPSILON = max(0.05, 0.3 - 0.00001 * pyxel.frame_count)
+
     for i, monstre in enumerate(options_globales["monstres"]):
         etat_actuel = torch.tensor(monstre["etat"], dtype=torch.float32)
+        sortie = model_forward(etat_actuel, model)
 
-        # Apprentissage si possible
-        if i in etat_prec and "recompense" in monstre:
-            with torch.no_grad():
-                pred_suiv = model_forward(etat_actuel, model)
+        # Exploration ou exploitation
+        if random.random() < EPSILON:
+            action = {
+                "droite":  random.choice([True, False]),
+                "gauche":  random.choice([True, False]),
+                "haut":    random.choice([True, False]),
+                "bas":     random.choice([True, False])
+            }
+        else:
+            SEUIL = 0.5
+            action = {
+                "droite":  sortie[0].item() > SEUIL,
+                "gauche":  sortie[1].item() > SEUIL,
+                "haut":    sortie[2].item() > SEUIL,
+                "bas":     sortie[3].item() > SEUIL
+            }
 
-            # Cible = sorties précédentes légèrement modifiées par la récompense
-            cible = model_forward(etat_prec[i], model).clone().detach()
+        if "position" not in monstre:
+            monstre["position"] = {"x": 800, "y": 2300}
 
-            # Appliquer la récompense sur **toutes les sorties**
-            if do_attaque:
-                cible[0] += monstre["recompense"]
-            if droite:
-                cible[1] += monstre["recompense"]
-            if gauche:
-                cible[2] += monstre["recompense"]
-            if haut:
-                cible[3] += monstre["recompense"]
-            if bas:
-                cible[4] += monstre["recompense"]
+        vitesse = 2
+        x, y = monstre["position"]["x"], monstre["position"]["y"]
+        anc_dist = math.hypot(x - joueur_x, y - joueur_y)
 
-            # Prédiction actuelle
-            pred = model_forward(etat_prec[i], model)
+        # Appliquer le mouvement
+        if action["droite"]: x += vitesse
+        if action["gauche"]: x -= vitesse
+        if action["bas"]:    y += vitesse
+        if action["haut"]:   y -= vitesse
 
-            perte = model["perte"](sortie, cible)
+        recompense = 0
 
+        # Bordures
+        if x < 0:
+            x = 0
+            recompense -= 10
+        elif x > 850:
+            x = 850
+            recompense -= 10
+
+        if y < 0:
+            y = 0
+            recompense -= 10
+        elif y > 2450:
+            y = 2450
+            recompense -= 10
+
+        monstre["position"]["x"] = x
+        monstre["position"]["y"] = y
+
+        dist = math.hypot(x - joueur_x, y - joueur_y)
+
+        # Récompenses de déplacement
+        if dist < anc_dist:
+            recompense += 0.5
+        elif dist > anc_dist:
+            recompense -= 0.5
+
+        if recompense >= 0 and any(action.values()):
+            recompense += 0.2
+
+        # Attaque uniquement si le monstre ne bouge pas et est proche
+        if not any(action.values()) and dist < 20:
+            monstre["attaque"] = True
+            recompense += 100
+            options_globales["player"]["vie"] = max(options_globales["player"]["vie"] - 10, 0)
+            if options_globales["player"]["vie"] == 0:
+                options_globales["player"]["mort"] = "zombie"
+
+        # === Apprentissage ===
+        if i in etat_prec and i in action_prec:
+            sortie_prec = model_forward(etat_prec[i], model)
+            cible = torch.zeros_like(sortie_prec)
+
+            if action_prec[i]["droite"]: cible[0] = 1
+            if action_prec[i]["gauche"]: cible[1] = 1
+            if action_prec[i]["haut"]:   cible[2] = 1
+            if action_prec[i]["bas"]:    cible[3] = 1
+
+            cible *= recompense
+
+            perte = model["perte"](sortie_prec, cible)
             model["optimiser"].zero_grad()
             perte.backward()
             model["optimiser"].step()
 
-        # Choix de l'action
-        with torch.no_grad():
-            sortie = model_forward(etat_actuel, model)
-
-        monstre["recompense"] = 0
-
-        # Valeur de epsilon (pourcentage d'exploration)
-        EPSILON = 0.3 - (0.0001 * pyxel.frame_count())
-
-        if random.random() < EPSILON:
-            # Choix aléatoire (exploration)
-            do_attaque = random.choice([True, False])
-            droite = random.choice([True, False])
-            gauche = random.choice([True, False])
-            haut = random.choice([True, False])
-            bas = random.choice([True, False])
-        else:
-            # Choix basé sur la sortie du modèle
-            SEUIL = 0.5
-            do_attaque = sortie[0].item() > SEUIL
-            droite     = sortie[1].item() > SEUIL
-            gauche     = sortie[2].item() > SEUIL
-            haut       = sortie[3].item() > SEUIL
-            bas        = sortie[4].item() > SEUIL
-
-
-
-        # Si la position n'existe pas encore
-        if "position" not in monstre:
-            monstre["position"] = {"x": 800, "y": 2300}
-        # Appliquer le déplacement
-        vitesse = 2
-
-        anc_dist_player = math.sqrt(abs(monstre["position"]["x"] - joueur_x)**2 + abs(monstre["position"]["y"] - joueur_y)**2)
-
-
-        if droite:
-            monstre["position"]["x"] += vitesse
-            if monstre["position"]["x"] > 850:
-                monstre["position"]["x"] = 850
-                monstre["recompense"] -= 10
-        if gauche:
-            monstre["position"]["x"] -= vitesse
-            if monstre["position"]["x"] < 0:
-                monstre["position"]["x"] = 0
-                monstre["recompense"] -= 10
-        if bas:
-            monstre["position"]["y"] += vitesse
-            if monstre["position"]["y"] > 2450:
-                monstre["position"]["y"] = 2450
-                monstre["recompense"] -= 10
-        if haut:
-            monstre["position"]["y"] -= vitesse
-            if monstre["position"]["y"] < 0:
-                monstre["position"]["y"] = 0
-                monstre["recompense"] -= 10
-
-        dist_player = math.sqrt(abs(monstre["position"]["x"] - joueur_x)**2 + abs(monstre["position"]["y"] - joueur_y)**2)
-        
-        if do_attaque:
-            monstre["attaque"] = True
-            if dist_player < 20:
-                monstre["recompense"] += 100
-                options_globales["player"]["vie"] = max(options_globales["player"]["vie"] - 10, 0)
-                if options_globales["player"]["vie"] == 0:
-                    options_globales["player"]["mort"] = "zombie"
-
-        if anc_dist_player > dist_player:
-            monstre["recompense"] += 1
-
-
-        cible = torch.zeros_like(sortie)
-        cible[0] = 1 if do_attaque else 0
-        cible[1] = 1 if droite else 0
-        cible[2] = 1 if gauche else 0
-        cible[3] = 1 if haut else 0
-        cible[4] = 1 if bas else 0
-
-        cible *= monstre["recompense"]
-
-
+        etat_prec[i] = etat_actuel
+        action_prec[i] = action
+        monstre["recompense"] = recompense
 
     return options_globales
+
+
 
 
 
