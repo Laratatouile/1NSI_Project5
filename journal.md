@@ -26,7 +26,7 @@ recéation de la carte de jeu
 implémentation de la carte de jeu
 résolution de bugs
 debut de l'ajout des IA pour les ennemis
-
+création du site web
 
 
 

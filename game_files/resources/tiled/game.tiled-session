@@ -85,10 +85,10 @@
         },
         "json/mort.json": {
             "scale": 0.7937777777777778,
-            "selectedLayer": 1,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 451.0078387458006,
-                "y": 250.06998880179168
+                "x": 449.74804031354984,
+                "y": 331.9568868980963
             }
         },
         "json/objects.json": {

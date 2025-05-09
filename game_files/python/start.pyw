@@ -26,29 +26,29 @@ def update():
         timer -= 1
 
     # detection de la mort et du compte a rebours pour la mort
-    if timer == 0 and options_globales["player"]["mort"] != False and mort_base == False:
-        options_globales["whereami"] = "mort"
-        mort_base = "menu"
-        timer = 5 * recup_option.param("fps")
+    if timer == 0 :
+        if options_globales["player"]["mort"] != False and mort_base == False:
+            if options_globales["player"]["mort"] == "gagne":
+                options_globales["whereami"] = "gagne"
+            else:
+                options_globales["whereami"] = "mort"
+            mort_base = "retour_menu"
+            timer = 5 * recup_option.param("fps")
+            options_globales["player"] = {
+                "x" : 450,
+                "y" : 2450,
+                "niveau" : 1,
+                "puissance_boost" : 1,
+                "attaque" : 0,
+                "modif_terrain" : 1,
+                "vie" : 100,
+                "mort" : False
+            }
+            pyxel.camera(0, 0)
 
-    elif timer == 0 and options_globales["player"]["mort"] != False and mort_base == "menu":
-        mort_base = "retour_menu"
-        timer = 5 * recup_option.param("fps")
-        options_globales["player"] = {
-            "x" : 450,
-            "y" : 2450,
-            "niveau" : 1,
-            "puissance_boost" : 1,
-            "attaque" : 0,
-            "modif_terrain" : 1,
-            "vie" : 100,
-            "mort" : False
-        }
-        pyxel.camera(0, 0)
-
-    elif timer == 0 and options_globales["player"]["mort"] != False and pyxel.btnp(pyxel.MOUSE_BUTTON_LEFT):
-        mort_base = False
-        options_globales["whereami"] = "menu_principal"
+        elif pyxel.btnp(pyxel.MOUSE_BUTTON_LEFT) and mort_base == "retour_menu" :
+            mort_base = False
+            options_globales["whereami"] = "menu_principal"
         
     
 
@@ -82,15 +82,17 @@ def draw() -> None:
     # importation des variables
     global affichage, options_globales, liste_datas_cartes, liste_datas_objets
 
-    # clear
-    pyxel.cls(0)
 
     # si je suis sur l'ecran de demarrage
     if options_globales["whereami"] == "start":
+        # clear
+        pyxel.cls(0)
         demarrage.draw(affichage, liste_datas_cartes)
 
     # si je suis sur l'ecran principal
     elif options_globales["whereami"] == "menu_principal":
+        # clear
+        pyxel.cls(0)
         menu_principal.draw(liste_datas_cartes["menu_principal"])
 
     # si je suis sur le jeu
@@ -98,8 +100,13 @@ def draw() -> None:
         personnage.draw(options_globales, liste_datas_objets, liste_datas_cartes, options_map)
         monstres.draw(options_globales, liste_datas_objets)
 
+    # si je suis mort
     elif options_globales["whereami"] == "mort":
         mort.draw(liste_datas_cartes["mort"])
+    
+    # si j'ai gagné
+    elif options_globales["whereami"] == "gagne":
+        mort.draw(liste_datas_cartes["gagne"])
 
     # affichage de la souris
     curseur.draw(options_globales, liste_datas_objets)
@@ -170,6 +177,9 @@ liste_datas_cartes = {
     ],
     "mort" : [
         fct.json_read("./resources/tiled/json/mort.json")
+    ],
+    "gagne" : [
+        fct.json_read("./resources/tiled/json/gagne.json")
     ],
     "map" : [
         fct.json_read("./resources/tiled/json/map.json")

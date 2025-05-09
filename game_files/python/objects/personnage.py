@@ -44,18 +44,21 @@ def update(options_globales:dict, options_map:dict) -> dict:
 
 def draw(options_globales:dict, liste_datas_objets:dict, liste_datas_cartes:dict, options_map:dict) -> None:
     affichage_pyxel.draw_carte(liste_datas_cartes["map"], options_map)
+    # si le joueur est en vie
     if options_globales["player"]["vie"] != 0:
         affichage_pyxel.draw_object(
             liste_datas_objets["joueur"],
             options_globales["player"]["x"],
             options_globales["player"]["y"]
         )
+    # si il est mort brule
     elif options_globales["player"]["mort"] == "brule":
         affichage_pyxel.draw_object(
             liste_datas_objets["joueur_brule"],
             options_globales["player"]["x"],
             options_globales["player"]["y"]
         )
+    # si il est mort tue par l'ia (t trop con c pas possible l'ia est nulle a chier)
     elif options_globales["player"]["mort"] == "zombie":
         affichage_pyxel.draw_object(
             liste_datas_objets["joueur_zombie"],
@@ -92,7 +95,7 @@ def recup_terrain(player:dict, options_map:dict) -> tuple:
                 player["modif_terrain"] = 1
                 options_map["listes_pommes"]["pommes_vierges"].pop(i)
                 return player, options_map
-    if math.hypot(player["x"] - 725, player["y"] - 175) < 50:
+    if math.hypot(player["x"] - 750, player["y"] - 200) < 50:
         player["mort"] = "gagne"
     player["modif_terrain"] = 1
     return player, options_map

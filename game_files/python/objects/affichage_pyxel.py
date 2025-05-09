@@ -23,6 +23,7 @@ def draw_carte(data_carte:dict, options_map:dict=None) -> None:
         # si c'est une partie de L'UI
         elif objects == "UI":
             pyxel.images[0].load(0, 0, "./resources/tiled/jeux_tuiles/UI.png")
+        # si c'est une partie du decor
         elif objects == "decor":
             pyxel.images[0].load(0, 0, "./resources/tiled/jeux_tuiles/decor.png")
             pyxel.colors[15] = 0x449717
@@ -59,23 +60,23 @@ def draw_carte(data_carte:dict, options_map:dict=None) -> None:
         if objects == "decor":
             for pomme in options_map["listes_pommes"]["liste_de_base"]:
                 pyxel.blt(
-                pomme[0],
-                pomme[1],
-                0,
-                (200 if pomme in options_map["listes_pommes"]["pommes_vierges"] else 100),
-                (50 if pomme in options_map["listes_pommes"]["pommes_vierges"] else 100),
-                tile_width,
-                tile_height,
-                colkey=0
+                    pomme[0],
+                    pomme[1],
+                    0,
+                    (200 if pomme in options_map["listes_pommes"]["pommes_vierges"] else 100),
+                    (50 if pomme in options_map["listes_pommes"]["pommes_vierges"] else 100),
+                    tile_width,
+                    tile_height,
+                    colkey=14
                 )
     return None
 
 
 def draw_object(data_objet:dict, x:int, y:int) -> None:
     pyxel.images[2].load(0, 0, data_objet[0])
-    pyxel.blt(x, y, 2, (data_objet[1] % 5)*50, (data_objet[1] // 5)*50, 50, 50, colkey=0)
+    pyxel.blt(x, y, 2, (data_objet[1] % 5)*50, (data_objet[1] // 5)*50, 50, 50, colkey=14)
     try:
-        pyxel.blt(x + 50, y, 2, (data_objet[2] % 5)*50, (data_objet[2] // 5)*50, 50, 50, colkey=0)
+        pyxel.blt(x + 50, y, 2, (data_objet[2] % 5)*50, (data_objet[2] // 5)*50, 50, 50, colkey=14)
     except:
         pass
     return None
