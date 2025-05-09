@@ -13,6 +13,7 @@ import objects.menu_principal as menu_principal
 import objects.curseur as curseur
 import objects.personnage as personnage
 import objects.monstres as monstres
+import objects.mort as mort
 
 
 
@@ -20,16 +21,35 @@ import objects.monstres as monstres
 def update():
     """ calcule ce qu'il y a afficher """
     # importation des variables
-    global affichage, options_globales, options_map, model, timer
-    timer = 0
-    timer = max(timer-1, 0)
+    global affichage, options_globales, options_map, model, timer, mort_base
+    if timer != 0:
+        timer -= 1
 
-    # detection de la mort et du compte a rebours
-    if timer == 0 and options_globales["player"]["mort"] != False:
+    # detection de la mort et du compte a rebours pour la mort
+    if timer == 0 and options_globales["player"]["mort"] != False and mort_base == False:
+        options_globales["whereami"] = "mort"
+        mort_base = "menu"
         timer = 5 * recup_option.param("fps")
 
-    elif timer == 0 and options_globales["player"]["mort"] != False:
-        sauvegarde.save(options_globales, model)
+    elif timer == 0 and options_globales["player"]["mort"] != False and mort_base == "menu":
+        mort_base = "retour_menu"
+        timer = 5 * recup_option.param("fps")
+        options_globales["player"] = {
+            "x" : 450,
+            "y" : 2450,
+            "niveau" : 1,
+            "puissance_boost" : 1,
+            "attaque" : 0,
+            "modif_terrain" : 1,
+            "vie" : 100,
+            "mort" : False
+        }
+        pyxel.camera(0, 0)
+
+    elif timer == 0 and options_globales["player"]["mort"] != False and pyxel.btnp(pyxel.MOUSE_BUTTON_LEFT):
+        mort_base = False
+        options_globales["whereami"] = "menu_principal"
+        
     
 
     # quitter
@@ -40,12 +60,9 @@ def update():
     # affichage de la souris
     options_globales = curseur.update(options_globales)
 
-    # si je suis sur le menu principal
-    if options_globales["whereami"] == "menu_principal":
-        options_globales = menu_principal.update(options_globales)
     
     # si je suis sur l'ecran de demarrage
-    elif options_globales["whereami"] == "start":
+    if options_globales["whereami"] == "start":
         options_globales, affichage = demarrage.update(options_globales, affichage)
 
     # si je suis sur le jeu
@@ -81,6 +98,9 @@ def draw() -> None:
         personnage.draw(options_globales, liste_datas_objets, liste_datas_cartes, options_map)
         monstres.draw(options_globales, liste_datas_objets)
 
+    elif options_globales["whereami"] == "mort":
+        mort.draw(liste_datas_cartes["mort"])
+
     # affichage de la souris
     curseur.draw(options_globales, liste_datas_objets)
 
@@ -92,8 +112,10 @@ def draw() -> None:
 
 
 # variables
-global options_globales, affichage, model, liste_datas_cartes, options_map, liste_datas_objets
+global options_globales, affichage, model, liste_datas_cartes, options_map, liste_datas_objets, mort_base, timer
 
+timer = 0
+mort_base = False
 affichage = 0
 
 options_globales = {
@@ -132,44 +154,25 @@ options_globales = {
 # liste des datas pour les cartes
 liste_datas_cartes = {
     "demarrage_1" : [
-        fct.json_read("./resources/tiled/json/demarrage/demarrage1.json"),
-        [
-            "./resources/tiled/jeux_tuiles/lettres1.png",
-            "./resources/tiled/jeux_tuiles/lettres2.png"
-        ]
+        fct.json_read("./resources/tiled/json/demarrage/demarrage1.json")
     ],
     "demarrage_2" : [
-        fct.json_read("./resources/tiled/json/demarrage/demarrage2.json"),
-        [
-            "./resources/tiled/jeux_tuiles/lettres1.png",
-            "./resources/tiled/jeux_tuiles/lettres2.png"
-        ]
+        fct.json_read("./resources/tiled/json/demarrage/demarrage2.json")
     ],
     "demarrage_3" : [
-        fct.json_read("./resources/tiled/json/demarrage/demarrage3.json"),
-        [
-            "./resources/tiled/jeux_tuiles/lettres1.png",
-            "./resources/tiled/jeux_tuiles/lettres2.png"
-        ]
+        fct.json_read("./resources/tiled/json/demarrage/demarrage3.json")
     ],
     "demarrage_4" : [
-        fct.json_read("./resources/tiled/json/demarrage/demarrage4.json"),
-        [
-            "./resources/tiled/jeux_tuiles/lettres1.png",
-            "./resources/tiled/jeux_tuiles/lettres2.png"
-        ]
+        fct.json_read("./resources/tiled/json/demarrage/demarrage4.json")
     ],
     "menu_principal" : [
-        fct.json_read("./resources/tiled/json/menu_principal.json"),
-        [
-            "./resources/tiled/jeux_tuiles/decor.png",
-        ]
+        fct.json_read("./resources/tiled/json/menu_principal.json")
+    ],
+    "mort" : [
+        fct.json_read("./resources/tiled/json/mort.json")
     ],
     "map" : [
-        fct.json_read("./resources/tiled/json/map.json"),
-        [
-            "./resources/tiled/jeux_tuiles/map.png",
-        ]
+        fct.json_read("./resources/tiled/json/map.json")
     ]
 }
 
@@ -224,7 +227,7 @@ pyxel.init(
     recup_option.param("taille_fenetre_x"),
     recup_option.param("taille_fenetre_y"),
     "La pomme de terre c'est super",
-    fps=240,#options_globales["fenetre"]["fps"],
+    fps=options_globales["fenetre"]["fps"],
     quit_key=pyxel.KEY_AC_BOOKMARKS
     )
 

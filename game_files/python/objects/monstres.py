@@ -24,7 +24,7 @@ def initialiser() -> dict:
     # si on en a pas
     else:
         # infos => x_perso, y_perso, direction lave, distance_lave, x_joueur, y_joueur
-        taille_entree = 6
+        taille_entree = 7
         # mvts => direction
         taille_sortie = 4
         # nombre de couches de neurones caches
@@ -63,7 +63,7 @@ def update(options_globales: dict, model: dict) -> dict:
 
     if "monstres" not in options_globales:
         options_globales["monstres"] = [{
-            "etat": [7, 8, 0, 3, 6, 3, 100],  # état initial avec distance approximative
+            "etat": [7, 8, 0, 3, 6, 3, 100],
             "position": {"x": 800, "y": 2300},
             "recompense": 0
         }]
@@ -72,7 +72,7 @@ def update(options_globales: dict, model: dict) -> dict:
     joueur_x = options_globales["player"]["x"]
     joueur_y = options_globales["player"]["y"]
 
-    # 🔁 Met à jour la distance IA ↔ joueur dans l'état
+    # Met à jour la distance IA ↔ joueur dans l'état
     for monstre in options_globales["monstres"]:
         x = monstre["position"]["x"]
         y = monstre["position"]["y"]
@@ -180,6 +180,7 @@ def update(options_globales: dict, model: dict) -> dict:
         monstre["recompense"] = recompense
 
     return options_globales
+
 
 
 

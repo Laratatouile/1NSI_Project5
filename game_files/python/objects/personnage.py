@@ -1,6 +1,7 @@
 import pyxel
 import objects.affichage_pyxel as affichage_pyxel
 import fonctions.touches_param as recup_option
+import math
 
 
 
@@ -91,5 +92,7 @@ def recup_terrain(player:dict, options_map:dict) -> tuple:
                 player["modif_terrain"] = 1
                 options_map["listes_pommes"]["pommes_vierges"].pop(i)
                 return player, options_map
+    if math.hypot(player["x"] - 725, player["y"] - 175) < 50:
+        player["mort"] = "gagne"
     player["modif_terrain"] = 1
     return player, options_map
