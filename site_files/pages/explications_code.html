@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La pomme de terre c'est super</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="../fichiers_web/prism.css">
+    <link rel="stylesheet" href="../fichiers_web/style.css">
+    <link rel="shortcut icon" href="../images/icone.ico" type="image/x-icon">
+</head>
+<body class="line-numbers">
+    <div class="bande_gauche">
+        <p>navigation rapide</p>
+    </div>
+    <div id="panneau_droite" class="navigation_rapide">
+        <p class="somm0">Sommaire :</p>
+        <div class="sommaire">
+            <!-- Le sommaire -->
+            <div class="somm1">
+                <p>
+                    <a href="#I">I) Explication breve du code</a>
+                    <img id="ouv_img_1" onclick="rap_ouv_I()" src="../images/fleche.png" alt=">">
+                </p>
+            </div>
+            <div id="somm1_1" class="somm1_1">
+                <p><a href="#I_1">1) Le fichier main</a></p>
+                <p><a href="#I_2">2) Les fichiers de fonctions</a></p>
+                <p><a href="#I_3">3) Les fichiers d'objects</a></p>
+            </div>
+        </div>
+    </div>
+    <div id="la_page" class="la_page_sans_la_barre">
+        <!-- La bande en haut -->
+        <div id="top" class="bande_haut">
+            <div class="titre">Project 5 de NSI</div>
+            <div onclick="bg_color()" class="bouton_bg">
+                <img src="../images/soleil.png" alt="Thème">
+            </div>
+        </div>
+        <!-- La totalité de la page -->
+        <div class="conteneur">
+            <!-- Les parties -->
+            <h1 id="I">I) Explication breve du code</h1>
+            <div class="partie">
+                <div id="I_1" class="sous_partie">
+                    <div class="partie_titre">
+                        <p>
+                            1) Le fichier main
+                        </p>
+                    </div>
+                    <div class="partie_texte">
+                        <p>
+                            C'est celui qui va executer les differentes instances et il va aussi initailiser les viriables de base.
+                        </p>
+                    </div>
+                </div>
+                <div id="I_2" class="sous_partie">
+                    <div class="partie_titre">
+                        <p>
+                            2) Les fichiers de fonctions
+                        </p>
+                    </div>
+                    <div class="partie_texte">
+                        <p>
+                            Ce sont les fichiers qui s'occupent de taches comme par exemple le chiffrement des sauvgardes, les ouvertures de fichiers et la récupération des touches associées aux actions.
+                        </p>
+                    </div>
+                </div>
+                <div id="I_3" class="sous_partie_fin">
+                    <div class="partie_titre">
+                        <p>
+                            3) Les fichiers d'objects
+                        </p>
+                    </div>
+                    <div class="partie_texte">
+                        <p>
+                            Ce sont les fichiers qui s'occupent de calculer objects et des decors. Il y en a un spécialisé dans l'affichage pyxel avec plein de parametres.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <br><br><br><br>
+            <!-- La barre du bas -->
+            <div class="bande_bas">
+                <div class="NMEA">
+                    La pomme de terre c'est super
+                </div>
+                <div class="maxime">
+                    Maxime GEOFFROY
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script type="text/Javascript" src="../fichiers_web/prism.js"></script>
+    <script type="text/Javascript" src="../fichiers_web/fonctions_principales.js"></script>
+</body>
+</html>

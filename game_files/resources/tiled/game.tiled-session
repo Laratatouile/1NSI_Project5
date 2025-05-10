@@ -3,14 +3,14 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "json/mort.json",
+    "activeFile": "json/gagne.json",
     "console.history": [
         "ls",
         "list"
     ],
     "expandedProjectPaths": [
-        ".",
         "json",
+        ".",
         "json/demarrage"
     ],
     "file.lastUsedOpenFilter": "Tous les Fichiers (*)",
@@ -65,6 +65,14 @@
             "viewCenter": {
                 "x": 449.93581514762514,
                 "y": 249.6790757381258
+            }
+        },
+        "json/gagne.json": {
+            "scale": 0.7733513513513514,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 464.21332214999654,
+                "y": 263.14042077304816
             }
         },
         "json/map.json": {
@@ -165,23 +173,24 @@
         "json/mort.json",
         "lettres1.tsx",
         "lettres2.tsx",
-        "UI.tsx"
+        "UI.tsx",
+        "json/gagne.json"
     ],
     "project": "game.tiled-project",
     "property.type": "bool",
     "recentFiles": [
-        "UI.tsx",
-        "lettres2.tsx",
-        "lettres1.tsx",
         "json/mort.json",
+        "lettres1.tsx",
+        "lettres2.tsx",
+        "UI.tsx",
+        "json/gagne.json",
         "json/menu_principal.json",
         "json/demarrage/demarrage1.json",
         "json/demarrage/demarrage4.json",
         "decor.tsx",
         "json/map.json",
         "objects.tsx",
-        "json/objects.json",
-        "json/demarrage/demarrage2.json"
+        "json/objects.json"
     ],
     "tileset.lastUsedFilter": "Tous les Fichiers (*)",
     "tileset.lastUsedFormat": "tsx",
