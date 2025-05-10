@@ -31,6 +31,61 @@ function rap_ouv_II() {
     }
 }
 
+// ouvrir et fermer la partie 3
+function rap_ouv_III() {
+    if (document.getElementById("somm3_1").style.display == "none") {
+        document.getElementById("somm3_1").style.display = "block";
+        document.getElementById("ouv_img_3").style.transform = 'rotate(0deg)';
+    } else {
+        document.getElementById("somm3_1").style.display = "none";
+        document.getElementById("ouv_img_3").style.transform = 'rotate(-90deg)';
+    }
+}
+
+// ouvrir et fermer la partie 4
+function rap_ouv_IV() {
+    if (document.getElementById("somm4_1").style.display == "none") {
+        document.getElementById("somm4_1").style.display = "block";
+        document.getElementById("ouv_img_4").style.transform = 'rotate(0deg)';
+    } else {
+        document.getElementById("somm4_1").style.display = "none";
+        document.getElementById("ouv_img_4").style.transform = 'rotate(-90deg)';
+    }
+}
+
+// ouvrir et fermer la partie 5
+function rap_ouv_V() {
+    if (document.getElementById("somm5_1").style.display == "none") {
+        document.getElementById("somm5_1").style.display = "block";
+        document.getElementById("ouv_img_5").style.transform = 'rotate(0deg)';
+    } else {
+        document.getElementById("somm5_1").style.display = "none";
+        document.getElementById("ouv_img_5").style.transform = 'rotate(-90deg)';
+    }
+}
+
+// ouvrir et fermer la partie 6
+function rap_ouv_VI() {
+    if (document.getElementById("somm6_1").style.display == "none") {
+        document.getElementById("somm6_1").style.display = "block";
+        document.getElementById("ouv_img_6").style.transform = 'rotate(0deg)';
+    } else {
+        document.getElementById("somm6_1").style.display = "none";
+        document.getElementById("ouv_img_6").style.transform = 'rotate(-90deg)';
+    }
+}
+
+// ouvrir et fermer la partie 7
+function rap_ouv_VII() {
+    if (document.getElementById("somm7_1").style.display == "none") {
+        document.getElementById("somm7_1").style.display = "block";
+        document.getElementById("ouv_img_7").style.transform = 'rotate(0deg)';
+    } else {
+        document.getElementById("somm7_1").style.display = "none";
+        document.getElementById("ouv_img_7").style.transform = 'rotate(-90deg)';
+    }
+}
+
 
 // asombrir a la navigation rapide
 const box = document.getElementById("panneau_droite");

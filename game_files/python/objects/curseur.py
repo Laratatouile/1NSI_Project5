@@ -6,14 +6,14 @@ def update(options_globales:dict) -> dict:
     options_globales["curseur"]["x"] = pyxel.mouse_x
     options_globales["curseur"]["y"] = pyxel.mouse_y
 
-    if pyxel.btnp(pyxel.MOUSE_BUTTON_LEFT):
-        if 50 < pyxel.mouse_x < 350:
-            if 50 < pyxel.mouse_y < 150:
-                options_globales["whereami"] = "jeu"
-                pyxel.camera(0, 2000)
-            elif 200 < pyxel.mouse_y < 300:
-                options_globales["whereami"] = "parametres"
-
+    if options_globales["whereami"] == "menu_principal":
+        if pyxel.btnp(pyxel.MOUSE_BUTTON_LEFT):
+            if 50 < pyxel.mouse_x < 350:
+                if 50 < pyxel.mouse_y < 150:
+                    options_globales["whereami"] = "jeu"
+                    pyxel.camera(0, 2000)
+                elif 200 < pyxel.mouse_y < 300:
+                    options_globales["whereami"] = "parametres"
 
     return options_globales
 

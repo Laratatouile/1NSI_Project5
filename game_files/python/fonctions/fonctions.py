@@ -1,6 +1,5 @@
 from datetime import datetime
 from json import load, dump
-
 import os
 
 ### ___ affichage dans la comsole simplifié ___ ###
