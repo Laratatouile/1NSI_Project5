@@ -14,8 +14,6 @@ def update(options_globales:dict) -> dict:
                     pyxel.camera(0, 2000)
                 elif 200 < pyxel.mouse_y < 300:
                     options_globales["whereami"] = "parametres"
-
-
     return options_globales
 
 

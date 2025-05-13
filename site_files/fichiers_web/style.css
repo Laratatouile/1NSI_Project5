@@ -76,30 +76,91 @@ h1{
 .somm1{
     text-decoration: underline;
 }
-
-.somm2{
-    text-decoration: underline;
-}
-
 .somm1_1{
     color: black;
     display: none;
 }
-
-.somm2_1{
-    color: black;
-    display: none;
-}
-
 .somm1 img{
     transform: rotate(-90deg);
     width: 25px;
 }
 
+.somm2{
+    text-decoration: underline;
+}
+.somm2_1{
+    color: black;
+    display: none;
+}
 .somm2 img{
     transform: rotate(-90deg);
     width: 25px;
 }
+
+.somm3{
+    text-decoration: underline;
+}
+.somm3_1{
+    color: black;
+    display: none;
+}
+.somm3 img{
+    transform: rotate(-90deg);
+    width: 25px;
+}
+
+
+.somm4{
+    text-decoration: underline;
+}
+.somm4_1{
+    color: black;
+    display: none;
+}
+.somm4 img{
+    transform: rotate(-90deg);
+    width: 25px;
+}
+
+
+.somm5{
+    text-decoration: underline;
+}
+.somm5_1{
+    color: black;
+    display: none;
+}
+.somm5 img{
+    transform: rotate(-90deg);
+    width: 25px;
+}
+
+
+.somm6{
+    text-decoration: underline;
+}
+.somm6_1{
+    color: black;
+    display: none;
+}
+.somm6 img{
+    transform: rotate(-90deg);
+    width: 25px;
+}
+
+.somm7{
+    text-decoration: underline;
+}
+.somm7_1{
+    color: black;
+    display: none;
+}
+.somm7 img{
+    transform: rotate(-90deg);
+    width: 25px;
+}
+
+
 
 /* bande du haut */
 .bande_haut{

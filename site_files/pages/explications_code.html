@@ -17,6 +17,7 @@
         <p class="somm0">Sommaire :</p>
         <div class="sommaire">
             <!-- Le sommaire -->
+            <!-- partie 1 -->
             <div class="somm1">
                 <p>
                     <a href="#I">I) Explication breve du code</a>
@@ -28,8 +29,83 @@
                 <p><a href="#I_2">2) Les fichiers de fonctions</a></p>
                 <p><a href="#I_3">3) Les fichiers d'objects</a></p>
             </div>
+            <!-- partie 2 -->
+            <div class="somm2">
+                <p>
+                    <a href="#II">II) L'organisations des fichiers</a>
+                    <img id="ouv_img_2" onclick="rap_ouv_II()" src="../images/fleche.png" alt=">">
+                </p>
+            </div>
+            <div id="somm2_1" class="somm2_1">
+                <p><a href="#II_1">1) L'arbre</a></p>
+                <p><a href="#II_2">2) Les fichier du repertoire ./python</a></p>
+                <p><a href="#II_3">3) Les fichier du repertoire ./resources</a></p>
+            </div>
+            <!-- partie 3 -->
+            <div class="somm3">
+                <p>
+                    <a href="#III">III) Explication des fichiers python</a>
+                    <img id="ouv_img_3" onclick="rap_ouv_III()" src="../images/fleche.png" alt=">">
+                </p>
+            </div>
+            <div id="somm3_1" class="somm3_1">
+                <p><a href="#III_1">1) Le fichier main.pyw</a></p>
+            </div>
+            <!-- partie 4 -->
+            <div class="somm4">
+                <p>
+                    <a href="#IV">IV) Explication des fichiers de fonctions</a>
+                    <img id="ouv_img_4" onclick="rap_ouv_IV()" src="../images/fleche.png" alt=">">
+                </p>
+            </div>
+            <div id="somm4_1" class="somm4_1">
+                <p><a href="#IV_1">1) Le fichier chiffrement</a></p>
+                <p><a href="#IV_2">2) Le fichier de fonctions</a></p>
+                <p><a href="#IV_3">3) Le fichier sauvegarde</a></p>
+                <p><a href="#IV_4">4) Le fichier touches_param</a></p>
+            </div>
+            <!-- partie 5 -->
+            <div class="somm5">
+                <p>
+                    <a href="#V">V) Explication des fichiers de fonctions</a>
+                    <img id="ouv_img_5" onclick="rap_ouv_V()" src="../images/fleche.png" alt=">">
+                </p>
+            </div>
+            <div id="somm5_1" class="somm5_1">
+                <p><a href="#V_1">1) Le fichier curseur</a></p>
+                <p><a href="#V_2">2) Le fichier de demarrage</a></p>
+                <p><a href="#V_3">3) Le fichier du menu principal</a></p>
+                <p><a href="#V_4">4) Le fichier mort</a></p>
+                <p><a href="#V_5">5) Le fichier personnage</a></p>
+                <p><a href="#V_6">6) Le fichier affichage_pyxel</a></p>
+            </div>
+            <!-- partie 6 -->
+            <div class="somm6">
+                <p>
+                    <a href="#VI">VI) Explication des fichiers de sauvegarde</a>
+                    <img id="ouv_img_6" onclick="rap_ouv_VI()" src="../images/fleche.png" alt=">">
+                </p>
+            </div>
+            <div id="somm6_1" class="somm6_1">
+                <p><a href="#VI_1">1) Les fichiers options jeu</a></p>
+                <p><a href="#VI_2">2) Les fichiers de sauvegarde</a></p>
+                <p><a href="#VI_3">3) Les fichiers tiled</a></p>
+                <p><a href="#VI_4">4) Les fichiers torch</a></p>
+            </div>
+            <!-- partie 7 -->
+            <div class="somm7">
+                <p>
+                    <a href="#VII">VII) Les autres pages</a>
+                    <img id="ouv_img_7" onclick="rap_ouv_VII()" src="../images/fleche.png" alt=">">
+                </p>
+            </div>
+            <div id="somm7_1" class="somm7_1">
+                <p><a href="../index.html">1) La page d'explication du jeu</a></p>
+                <p><a href="./vente.html">2) La page de vente</a></p>
+            </div>
         </div>
     </div>
+    <!-- la page en elle meme -->
     <div id="la_page" class="la_page_sans_la_barre">
         <!-- La bande en haut -->
         <div id="top" class="bande_haut">
@@ -51,7 +127,7 @@
                     </div>
                     <div class="partie_texte">
                         <p>
-                            C'est celui qui va executer les differentes instances et il va aussi initailiser les viriables de base.
+                            C'est celui qui va executer les differentes instances et il va aussi initailiser les variables de base.
                         </p>
                     </div>
                 </div>
@@ -80,6 +156,1054 @@
                     </div>
                 </div>
             </div>
+            <!-- partie 2 -->
+            <h1 id="II">II) L'organisations des fichiers</h1>
+            <div class="partie">
+                <div id="II_1" class="sous_partie">
+                    <div class="partie_titre">
+                        <p>
+                            1) L'arbre
+                        </p>
+                    </div>
+                    <div class="partie_texte">
+                        <div class="arbre">
+                            <pre class="no-line-numbers">
+                                <code class="language-treeview">
+                                    game_files/
+                                    |-- python/
+                                    |   |-- main.pyw
+                                    |   |-- fonctions_principales.js
+                                    |   |-- fonctions/
+                                    |   |   |-- chiffrement.py
+                                    |   |   |-- fonctions.py
+                                    |   |   |-- sauvegarde.py
+                                    |   |   `-- touches_param.py
+                                    |   `-- objects
+                                    |       |-- affichage_pyxel.py
+                                    |       |-- curseur.py
+                                    |       |-- demarrage.py
+                                    |       |-- menu_principal.py
+                                    |       |-- monstres.py
+                                    |       |-- mort.py
+                                    |       `-- personnage.py
+                                    `-- resources/
+                                        |-- options_jeu/
+                                        |   |-- parametres.json
+                                        |   `-- touches.json
+                                        |-- sauvegardes/
+                                        |   |-- all_save.json
+                                        |   `-- save.json
+                                        |-- tiled/
+                                        |   |-- jeux_tuiles/
+                                        |   |    |-- decor.png
+                                        |   |    |-- lettres1.png
+                                        |   |    |-- lettres2.png
+                                        |   |    |-- objects.png
+                                        |   |    |-- patates.png
+                                        |   |    `-- UI.png
+                                        |   `-- json/
+                                        |       |-- gagne.json
+                                        |       |-- map.json
+                                        |       |-- menu_principal.json
+                                        |       |-- mort.json
+                                        |       `-- demarrage/
+                                        |           |-- demarrage1.json
+                                        |           |-- demarrage2.json
+                                        |           |-- demarrage3.json
+                                        |           `-- demarrage4.json
+                                        `-- torch/
+                                            |-- save1.json
+                                            `-- save1.pt
+                                </code>
+                            </pre>    
+                        </div>
+                    </div>
+                </div>
+                <div id="II_2" class="sous_partie">
+                    <div class="partie_titre">
+                        <p>
+                            2) Les fichier du repertoire ./python
+                        </p>
+                    </div>
+                    <div class="partie_texte">
+                        <p>
+                            Ce sont les fichiers qui s'occupent de calculer et afficher le jeu. <br>
+                            Les fichier fonctions servent a des taches repetitives, elles me servent dans plusieurs projec.t <br>
+                            Les fichiers qui se situent dans le dossier object sont les fihciers qui s'occupent des taches des objects comme gerer les ennemis ou gerer les menus et le curseur. <br>
+                            Dans le dossier object il y a aussi un fichier qui permet d'afficher les cartes et objects plus simplement.
+                        </p>
+                    </div>
+                </div>
+                <div id="II_3" class="sous_partie_fin">
+                    <div class="partie_titre">
+                        <p>
+                            3) Les fichier du repertoire ./resources
+                        </p>
+                    </div>
+                    <div class="partie_texte">
+                        <p>
+                            Ces sont les fichier qui ne font pas de calcul. Des fichiers de stockage. <br>
+                            Ils sont tries par categories. <br>
+                            Ces fichiers servent pour plusieures choses comme le stockage des maps et des objects. <br>
+                            Ils servent aussi pour stocker les valeur des poids des neurones du modele torch.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <h1 id="III">III) Explication des fichiers python</h1>
+            <!-- partie 3 -->
+            <div class="partie">
+                <div id="III_1" class="sous_partie_fin">
+                    <div class="partie_titre">
+                        <p>
+                            1) Le fichier main.pyw
+                        </p>
+                    </div>
+                    <div class="partie_texte">
+                        <pre>
+                            <code class="language-python">
+                                import pyxel
+
+
+                                # importation des fonctions
+                                import fonctions.touches_param as recup_option
+                                import fonctions.fonctions as fct
+                                import fonctions.sauvegarde  as sauvegarde
+
+
+                                # importation des objects
+                                import objects.demarrage as demarrage
+                                import objects.menu_principal as menu_principal
+                                import objects.curseur as curseur
+                                import objects.personnage as personnage
+                                import objects.monstres as monstres
+                                import objects.mort as mort
+                                
+                            </code>
+                        </pre>
+
+                        <p>
+                            importation des modules et des fichiers nécéssaires pour le jeu
+                        </p>
+
+                        <pre>
+                            <code class="language-python">
+                                def update():
+                                    """ calcule ce qu'il y a afficher """
+                                    # importation des variables
+                                    global affichage, options_globales, options_map, model, timer, mort_base
+                                    if timer != 0:
+                                        timer -= 1
+
+                                    # detection de la mort et du compte a rebours pour la mort
+                                    if timer == 0 :
+                                        if options_globales["player"]["mort"] != False and mort_base == False:
+                                            if options_globales["player"]["mort"] == "gagne":
+                                                options_globales["whereami"] = "gagne"
+                                            else:
+                                                options_globales["whereami"] = "mort"
+                                            mort_base = "retour_menu"
+                                            timer = 5 * recup_option.param("fps")
+                                            options_globales["player"] = {
+                                                "x" : 450,
+                                                "y" : 2450,
+                                                "niveau" : 1,
+                                                "puissance_boost" : 1,
+                                                "attaque" : 0,
+                                                "modif_terrain" : 1,
+                                                "vie" : 100,
+                                                "mort" : False
+                                            }
+                                            pyxel.camera(0, 0)
+
+                                        elif pyxel.btnp(pyxel.MOUSE_BUTTON_LEFT) and mort_base == "retour_menu" :
+                                            mort_base = False
+                                            options_globales["whereami"] = "menu_principal"
+                                        
+                                    
+
+                                    # quitter
+                                    if pyxel.btn(recup_option.touche("arret")):
+                                        sauvegarde.save(options_globales, model)
+
+
+                                    # affichage de la souris
+                                    options_globales = curseur.update(options_globales)
+
+                                    
+                                    # si je suis sur l'ecran de demarrage
+                                    if options_globales["whereami"] == "start":
+                                        options_globales, affichage = demarrage.update(options_globales, affichage)
+
+                                    # si je suis sur le jeu
+                                    elif options_globales["whereami"] == "jeu":
+                                        options_globales, options_map = personnage.update(options_globales, options_map)
+                                        options_globales = monstres.update(options_globales, model)
+
+                                    return None
+                            </code>
+                        </pre>
+
+                        <p>
+                            La fonction update du fichier main est la plus haute instance des fonctions updates c'est elle qui commande quels fichier ils faut update. <br>
+                            Elle le sait grace a la variable whereami du dictionnaire option_globales. <br>
+                            Elle permet aussi de gerer quand le personnage est mort.
+                        </p>
+
+                        <pre>
+                            <code class="language-python">
+                                def draw() -> None:
+                                    """ affiche les graphismes """
+                                    # importation des variables
+                                    global affichage, options_globales, liste_datas_cartes, liste_datas_objets
+
+
+                                    # si je suis sur l'ecran de demarrage
+                                    if options_globales["whereami"] == "start":
+                                        # clear
+                                        pyxel.cls(0)
+                                        demarrage.draw(affichage, liste_datas_cartes)
+
+                                    # si je suis sur l'ecran principal
+                                    elif options_globales["whereami"] == "menu_principal":
+                                        # clear
+                                        pyxel.cls(0)
+                                        menu_principal.draw(liste_datas_cartes["menu_principal"])
+
+                                    # si je suis sur le jeu
+                                    elif options_globales["whereami"] == "jeu":
+                                        personnage.draw(options_globales, liste_datas_objets, liste_datas_cartes, options_map)
+                                        monstres.draw(options_globales, liste_datas_objets)
+
+                                    # si je suis mort
+                                    elif options_globales["whereami"] == "mort":
+                                        mort.draw(liste_datas_cartes["mort"])
+                                    
+                                    # si j'ai gagné
+                                    elif options_globales["whereami"] == "gagne":
+                                        mort.draw(liste_datas_cartes["gagne"])
+
+                                    # affichage de la souris
+                                    curseur.draw(options_globales, liste_datas_objets)
+
+                                    return None
+                            </code>
+                        </pre>
+                                
+                        <p>
+                            Tout comme la fonction update, la fonction draw du fichier main est la plus haute instance des fonctions draw des fichiers. <br>
+                            Elle choisi elle aussi quels fichiers doivent se lancer pour l'affichage correct. <br>
+                        </p>
+
+                        <pre>
+                            <code class="language-python">
+                                # variables
+                                global options_globales, affichage, model, liste_datas_cartes, options_map, liste_datas_objets, mort_base, timer
+
+                                timer = 0
+                                mort_base = False
+                                affichage = 0
+
+                                options_globales = {
+                                    "whereami" : "start",
+                                    "fenetre" : {
+                                        "x" : recup_option.param("taille_fenetre_x"),
+                                        "y" : recup_option.param("taille_fenetre_y"),
+                                        "fps" : recup_option.param("fps")
+                                    },
+                                    "curseur" : {
+                                        "x" : 0,
+                                        "y" : 0
+                                    },
+                                    "player" : {
+                                        "x" : 450,
+                                        "y" : 2450,
+                                        "niveau" : 1,
+                                        "puissance_boost" : 1,
+                                        "attaque" : 0,
+                                        "modif_terrain" : 1,
+                                        "vie" : 100,
+                                        "mort" : False
+                                    },
+                                    "monstres": [
+                                        {
+                                            "etat": [1, 2, 1, 2, 30, 10],  # [x_perso, y_perso, dir_lave, dist_lave, x_joueur, y_joueur]
+                                            "position": {"x": 800, "y": 2300},
+                                            "recompense": 0
+                                        }
+                                    ]
+                                }
+
+
+
+
+                                # liste des datas pour les cartes
+                                liste_datas_cartes = {
+                                    "demarrage_1" : [
+                                        fct.json_read("./resources/tiled/json/demarrage/demarrage1.json")
+                                    ],
+                                    "demarrage_2" : [
+                                        fct.json_read("./resources/tiled/json/demarrage/demarrage2.json")
+                                    ],
+                                    "demarrage_3" : [
+                                        fct.json_read("./resources/tiled/json/demarrage/demarrage3.json")
+                                    ],
+                                    "demarrage_4" : [
+                                        fct.json_read("./resources/tiled/json/demarrage/demarrage4.json")
+                                    ],
+                                    "menu_principal" : [
+                                        fct.json_read("./resources/tiled/json/menu_principal.json")
+                                    ],
+                                    "mort" : [
+                                        fct.json_read("./resources/tiled/json/mort.json")
+                                    ],
+                                    "gagne" : [
+                                        fct.json_read("./resources/tiled/json/gagne.json")
+                                    ],
+                                    "map" : [
+                                        fct.json_read("./resources/tiled/json/map.json")
+                                    ]
+                                }
+
+
+
+                                # liste des data pour les objects
+                                liste_datas_objets = {
+                                    "curseur" : [
+                                        "./resources/tiled/jeux_tuiles/objects.png",
+                                        0
+                                    ],
+                                    "joueur" : [
+                                        "./resources/tiled/jeux_tuiles/patates.png",
+                                        0
+                                    ],
+                                    "joueur_brule" : [
+                                        "./resources/tiled/jeux_tuiles/patates.png",
+                                        1
+                                    ],
+                                    "joueur_zombie" : [
+                                        "./resources/tiled/jeux_tuiles/patates.png",
+                                        3
+                                    ],
+                                    "monstre" : [
+                                        "./resources/tiled/jeux_tuiles/patates.png",
+                                        5, 6
+                                    ]
+                                }
+
+                                options_map = {
+                                    "listes_pommes" : {
+                                        "liste_de_base" : [
+                                            [100, 150],
+                                            [750, 850],
+                                            [100, 1350],
+                                            [800, 1950]
+                                        ],
+                                        "pommes_vierges": [
+                                            [100, 150],
+                                            [750, 850],
+                                            [100, 1350],
+                                            [800, 1950]
+                                        ]
+                                    }
+                                }
+
+                                model = monstres.initialiser()
+
+
+                                # parametres de la fenetre
+                                pyxel.init(
+                                    recup_option.param("taille_fenetre_x"),
+                                    recup_option.param("taille_fenetre_y"),
+                                    "La pomme de terre c'est super",
+                                    fps=options_globales["fenetre"]["fps"],
+                                    quit_key=pyxel.KEY_AC_BOOKMARKS
+                                    )
+
+
+                                # lancement de l'instance pyxel
+                                pyxel.fullscreen(recup_option.param("fullscreen"))
+                                pyxel.run(update, draw)
+                            </code>
+                        </pre>
+
+                        <p>
+                            Les variables definies s'initailisent ici pour le bon lancement du code. <br>
+                            Elles incluent les fichiers json des cartes et les emplacement et les ID des objects. <br>
+                            Les images a charger pour les cartes sont contenues dans les noms des couches des cartes.
+                        </p>
+                
+                    </div>
+                </div>
+            </div>
+            <!-- partie 4 -->
+            <h1 id="IV">IV) Explication des fichiers de fonctions</h1>
+            <div class="partie">
+                <div id="IV_1" class="sous_partie">
+                    <div class="partie_titre">
+                        <p>
+                            1) Le fichier chiffrement
+                        </p>
+                    </div>
+                    <div class="partie_texte">
+                        <p>
+                            C'est celui qui va chiffrer les sauvegardes.
+                        </p>
+
+                        <pre>
+                            <code class="language-python">
+                                def fichier_ouvrir(nom_sauvegarde:str, clef:int) -> dict:
+                                    """ essaye d'ouvrir le fichier avec la clef definie """
+                                    def decode(texte:str, decalage:int) -> str:
+                                        """ dechiffre le texte avec le decalage """
+                                        def cree_dictionnaire_decalage(decalage:int) -> dict:
+                                            """ crée un dictionnaire avec un decalage de decalage """
+                                            symboles_dans_dictionnaire = [chr(i) for i in range(65, 91)] + [chr(i) for i in range(97, 123)] + [chr(i) for i in range(48, 58)] + [" ", "{", "}", ":", ",", "[", "]", '"', "'", "_", "-", "."]
+                                            return {i[1] : symboles_dans_dictionnaire[i[0]+decalage if i[0]+decalage < len(symboles_dans_dictionnaire) else i[0] - len(symboles_dans_dictionnaire) + decalage] for i in enumerate(symboles_dans_dictionnaire)}
+                                        decode = ""
+                                        dictionnaire_decalage = cree_dictionnaire_decalage(-decalage)
+                                        for i in texte:
+                                            try:
+                                                decode += dictionnaire_decalage.get(i)
+                                            except:
+                                                pass
+                                        return decode
+                                    # ouvrir et lire le fichier chiffre
+                                    with open(nom_sauvegarde, "r") as read_file:
+                                        data_chiff = read_file.read()
+                                    # renvoier le fichier  dechiffre et tranforme en dictionnaire
+                                    data = decode(data_chiff, clef)
+                                    return eval(data)
+                                </code>
+                            </pre>
+                                    
+                            <p>
+                                La partie de dechifferment utilise un la clef fournie pour dechiffrer la sauvegarde indiquée.
+                            </p>
+                            
+                            <pre>
+                                <code class="language-python">
+
+
+                                def fichier_sauvegarder(nom_sauvegarde:str, clef:int, sauvegarde:dict) -> None:
+                                    """ essaye d'ouvrir le fichier avec la clef definie """
+                                    def code(texte:str, decalage:int) -> str:
+                                        """ chiffre le texte avec le decalage """
+                                        def cree_dictionnaire_decalage(decalage:int) -> dict:
+                                            """ crée un dictionnaire avec un decalage de decalage """
+                                            symboles_dans_dictionnaire = [chr(i) for i in range(65, 91)] + [chr(i) for i in range(97, 123)] + [chr(i) for i in range(48, 58)] + [" ", "{", "}", ":", ",", "[", "]", '"', "'", "_", "-", "."]
+                                            return {i[1] : symboles_dans_dictionnaire[i[0]+decalage if i[0]+decalage < len(symboles_dans_dictionnaire) else i[0] - len(symboles_dans_dictionnaire) + decalage] for i in enumerate(symboles_dans_dictionnaire)}
+                                        code = ""
+                                        for i in texte:
+                                            code += cree_dictionnaire_decalage(decalage).get(str(i))
+                                        return code
+                                    # ouvrir et lire le fichier chiffre
+                                    sauvegarde = str(sauvegarde)
+                                    with open(nom_sauvegarde, "w", encoding="utf-8") as write_file:
+                                        write_file.write(code(sauvegarde, int(clef)))
+                                    return None
+                            </code>
+                        </pre>
+                        
+                        <p>
+                            La partie de chiffrement chiffre un dictionnaire python et le sauvegarde chiffré avec la clef fournie.
+                        </p>
+
+                    </div>
+                </div>
+                <div id="IV_2" class="sous_partie">
+                    <div class="partie_titre">
+                        <p>
+                            2) Le fichier de fonctions
+                        </p>
+                    </div>
+                    <div class="partie_texte">
+
+                        <p>
+                            Ce fichier permet plusieures choses.
+                        </p>
+
+                        <pre>
+                            <code class="language-python">
+                                def logs(Loader, Gravity, Text):
+                                    """
+                                        Loader, gravite, texte
+                                    """
+                                    decalage_max_texte, LenSpace = 20, ""
+                                    if len(Loader) + len(Gravity) < decalage_max_texte:
+                                        Space = decalage_max_texte - (len(Loader) + len(Gravity))
+                                        for i in range(Space):
+                                            LenSpace += " "
+                                    print("[",str(datetime.now())[11:-7],"] [",Loader,"/",Gravity.upper(),"]",LenSpace," :",Text)
+                            </code>
+                        </pre>
+
+                        <p>
+                            Cette partie permet de faire des logs propres dans la console python. <br>
+                            Vous avez juste a entrer le texte a afficher, le fichier ou fonction qui fait l'action et le type d'erreur ou info
+                        </p>
+
+                        <pre>
+                            <code class="language-python">
+                                def json_read(path:str):
+                                    """
+                                        chargement du fichier a ouvrir et retour sous forme de dictionnaire
+                                        Si data renvoie data
+                                        Sinon renvoie None
+                                    """
+                                    while os.listdir()[0] != ".git":
+                                        os.chdir("../")
+                                    os.chdir("game_files")
+                                    try:
+                                        data = load(open(path, "r"))
+                                    except:
+                                        print(os.listdir())
+                                        print(path)
+                                        logs("JsonReader", "INFO", "Le fichier n'a pas été lu")
+                                        return None
+                                    return data
+                            </code>
+                        </pre>
+
+                        <p>
+                            Cette fonction permet de charger un fichier json.
+                        </p>
+
+                        <pre>
+                            <code class="language-python">
+                                def json_save(data:dict, file:str) -> None:
+                                    """
+                                        sauvegarde du dictionnaire dans le fichier donne
+                                        Si le fichier n'est pas sauvegarde
+                                    """
+                                    try:
+                                        dump(data, open(file, "w"))
+                                        logs("JsonReader", "INFO", "Le fichier a été enregistré")
+                                    except Exception as e:
+                                        logs("JsonReader", "FATAL", "Le fichier n'a pas pu être enregistré : "+str(e), 2)
+
+                                    return None
+                            </code>
+                        </pre>
+
+                        <p>
+                            Cette fonction la permet d'enregistrer un dictionnaire dans un fichier json.
+                        </p>
+                    </div>
+                </div>
+                <div id="IV_3" class="sous_partie">
+                    <div class="partie_titre">
+                        <p>
+                            3) Le fichier sauvegarde
+                        </p>
+                    </div>
+                    <div class="partie_texte">
+                        <p>
+                            Ce petit fichier permet la sauvegarde.
+                        </p>
+
+                        <pre>
+                            <code class="language-python">
+                                def save(options_globales:dict, model:dict) -> None:
+                                    # sauvegarde des options globales
+                                    chiffrement.fichier_sauvegarder("./resources/sauvegardes/save.json", 8, options_globales)
+                                    # sauvegarde des infos pour l'ia
+                                    infos = {
+                                        "taille_entree": model["entree"].in_features,
+                                        "taille_cachee": model["entree"].out_features,
+                                        "taille_sortie": model["sortie"].out_features,
+                                        "learning_rate": model["optimiser"].param_groups[0]["lr"]
+                                    }
+                                    chiffrement.fichier_sauvegarder("./resources/torch/save1.json", 8, infos)
+                                    # sauvegarde des poids du reseau ia
+                                    torch.save({
+                                        "entree": model["entree"].state_dict(),
+                                        "sortie": model["sortie"].state_dict(),
+                                        "optimiseur": model["optimiser"].state_dict()
+                                    }, "./resources/torch/save1.pt")
+                                    # quitter
+                                    pyxel.quit()
+                            </code>
+                        </pre>
+
+                        <p>
+                            Ce fichier enregistre les variables nécessaires a l'ia et le fichier de sauvegarde.
+                        </p>
+
+                    </div>
+                </div>
+                <div id="IV_4" class="sous_partie_fin">
+                    <div class="partie_titre">
+                        <p>
+                            4) Le fichier touches_param
+                        </p>
+                    </div>
+                    <div class="partie_texte">
+                        <p>
+                            Ce fichier est responsable de chercher quelle touche est assignée a quelle action. <br>
+                            Il peut aussi donner des variables stockées dans le fichier comme le nombre de fps etc...
+                        </p>
+
+                        <pre>
+                            <code class="language-python">
+                                import fonctions.fonctions as fct
+
+                                def param(parametre:str) -> all:
+                                    """recupere le parametre demande"""
+                                    return fct.json_read("./resources/options_jeu/parametres.json")[parametre]
+
+                                def touche(action:str) -> str:
+                                    """recupere la touche de l'action demandee"""
+                                    return fct.json_read("./resources/options_jeu/touches.json")[action]
+
+                            </code>
+                        </pre>
+                    </div>
+                </div>
+            </div>
+            <!-- partie 5 -->
+            <h1 id="V">V) Explication des fichiers Objects</h1>
+            <div class="partie">
+                <div id="V_1" class="sous_partie">
+                    <div class="partie_titre">
+                        <p>
+                            1) Le fichier curseur
+                        </p>
+                    </div>
+                    <div class="partie_texte">
+                        <p>
+                            C'est celui qui va gerer et afficher le curseur
+                        </p>
+
+                        <pre>
+                            <code class="language-python">
+                                def update(options_globales:dict) -> dict:
+                                    options_globales["curseur"]["x"] = pyxel.mouse_x
+                                    options_globales["curseur"]["y"] = pyxel.mouse_y
+
+                                    if options_globales["whereami"] == "menu_principal":
+                                        if pyxel.btnp(pyxel.MOUSE_BUTTON_LEFT):
+                                            if 50 < pyxel.mouse_x < 350:
+                                                if 50 < pyxel.mouse_y < 150:
+                                                    options_globales["whereami"] = "jeu"
+                                                    pyxel.camera(0, 2000)
+                                                elif 200 < pyxel.mouse_y < 300:
+                                                    options_globales["whereami"] = "parametres"
+
+                                    return options_globales
+                            </code>
+                        </pre>
+
+                        <p>
+                            La fonction update se charge de mettre a jour la position du curseur et de mettre a jour si on clique sur un bouton dans le menu principal.
+                        </p>
+
+                        <pre>
+                            <code class="language-python">
+                                def draw(options_globales:dict, liste_datas_objets:dict) -> None:
+                                    if options_globales["whereami"] == "menu_principal" :
+                                        affichage_pyxel.draw_object(
+                                            liste_datas_objets["curseur"],
+                                            options_globales["curseur"]["x"],
+                                            options_globales["curseur"]["y"])
+                                    return None
+                            </code>
+                        </pre>
+
+                        <p>
+                            Et la fonction draw se charge de l'afficher avec ddifferents types en fonction de la ou on est.
+                        </p>
+
+                    </div>
+                </div>
+                <div id="V_2" class="sous_partie">
+                    <div class="partie_titre">
+                        <p>
+                            2) Le fichier de demarrage
+                        </p>
+                    </div>
+                    <div class="partie_texte">
+                        <p>
+                            Ce fichier a pour seul but d'afficher les pages au demarrage.
+                        </p>
+
+                        <pre>
+                            <code class="language-python">
+                                def update(options_globales:dict, affichage:int) -> dict:
+                                    """ met a jour l'ecran de demarrage """
+                                    if pyxel.frame_count == 3 * options_globales["fenetre"]["fps"]:
+                                        affichage = 1
+                                    elif pyxel.frame_count == 5 * options_globales["fenetre"]["fps"]:
+                                        affichage = 2
+                                    elif pyxel.frame_count == 7 * options_globales["fenetre"]["fps"]:
+                                        affichage = 3
+                                    elif pyxel.frame_count == 9 * options_globales["fenetre"]["fps"]:
+                                        options_globales["whereami"] = "menu_principal"
+                                    if (recup_option.touche("clic_principal") == "gauche" and pyxel.btnp(pyxel.MOUSE_BUTTON_LEFT)) or (recup_option.touche("clic_principal") == "droit" and pyxel.btnp(pyxel.MOUSE_BUTTON_RIGHT)):
+                                        options_globales["whereami"] = "menu_principal"
+
+                                    return options_globales, affichage
+                            </code>
+                        </pre>
+
+                        <p>
+                            Mises a jour des pages et de quand changer de page. <br>
+                            Si vous avez l'oeuil vous avez vu que vous pouvez passer ces pages simplement en cliquant.
+                        </p>
+
+                        <pre>
+                            <code class="language-python">
+                                def draw(affichages:int, liste_datas_cartes:dict) -> None:
+                                    """ affiche l'ecran de demarrage """
+                                    if affichages == 0:
+                                        affichage_pyxel.draw_carte(liste_datas_cartes["demarrage_1"])
+                                    if affichages == 1:
+                                        affichage_pyxel.draw_carte(liste_datas_cartes["demarrage_2"])
+                                    if affichages == 2:
+                                        affichage_pyxel.draw_carte(liste_datas_cartes["demarrage_3"])
+                                    if affichages == 3:
+                                        affichage_pyxel.draw_carte(liste_datas_cartes["demarrage_4"])
+                                    return None
+                            </code>
+                        </pre>
+
+                        <p>
+                            affichage de la page en cours.
+                        </p>
+
+                    </div>
+                </div>
+                <div id="V_3" class="sous_partie">
+                    <div class="partie_titre">
+                        <p>
+                            3) Le fichier du menu principal
+                        </p>
+                    </div>
+                    <div class="partie_texte">
+                        <p>
+                            Le fichier du menu principal caucule et affiche le menu principal comme son nom l'indique.
+                        </p>
+
+                        <pre>
+                            <code class="language-python">
+                                import objects.affichage_pyxel as affichage_pyxel
+
+                                def draw(data_carte) -> None:
+                                    """ Affiche la carte à l'écran en utilisant les données de Tiled et Pyxel """
+                                    affichage_pyxel.draw_carte(data_carte)
+                                    return None
+                            </code>
+                        </pre>
+
+                        <p>
+                            Vu le nombre de ligne tres consequent du fichier je pense qu'il y a des choses que je n'ai pas implémentées que j'aurais du.
+                        </p>
+                    </div>
+                </div>
+                <div id="V_4" class="sous_partie">
+                    <div class="partie_titre">
+                        <p>
+                            4) Le fichier mort
+                        </p>
+                    </div>
+                    <div class="partie_texte">
+                        <p>
+                            C'est celui qui va afficher les ecrans de mort.
+                        </p>
+
+                        <pre>
+                            <code class="language-python">
+                                import objects.affichage_pyxel as affichage_pyxel
+
+
+                                def draw(data_carte) -> None:
+                                    """ Affiche la carte à l'écran en utilisant les données de Tiled et Pyxel """
+                                    affichage_pyxel.draw_carte(data_carte)
+                                    return None
+                            </code>
+                        </pre>
+                    </div>
+                </div>
+                <div id="V_5" class="sous_partie">
+                    <div class="partie_titre">
+                        <p>
+                            5) Le fichier personnage
+                        </p>
+                    </div>
+                    <div class="partie_texte">
+                        <p>
+                            C'est celui qui va faire tous les calculs liés au personnage et a sa position.
+                        </p>
+
+                        <pre>
+                            <code class="language-python">
+                                def update(options_globales:dict, options_map:dict) -> dict:
+                                    """ s'occupe de la getion du joueur et des affichages du jeu """
+                                    # recuperation des variables
+                                    vitesse_personnage = recup_option.param("vitesse_personnage") * options_globales["player"]["puissance_boost"]
+
+                                    options_globales["player"], options_map = recup_terrain(options_globales["player"], options_map)
+
+                                    # update des touches
+                                    if options_globales["player"]["attaque"] == 0:
+                                        if pyxel.btn(pyxel.KEY_Z):
+                                            options_globales["player"]["y"] = max(options_globales["player"]["y"] - vitesse_personnage * options_globales["player"]["modif_terrain"], 0)
+                                        if pyxel.btn(pyxel.KEY_S):
+                                            options_globales["player"]["y"] = min(options_globales["player"]["y"] + vitesse_personnage * options_globales["player"]["modif_terrain"], 2450)
+                                        if pyxel.btn(pyxel.KEY_Q):
+                                            options_globales["player"]["x"] = max(options_globales["player"]["x"] - vitesse_personnage * options_globales["player"]["modif_terrain"], 0)
+                                        if pyxel.btn(pyxel.KEY_D):
+                                            options_globales["player"]["x"] = min(options_globales["player"]["x"] + vitesse_personnage * options_globales["player"]["modif_terrain"], 850)
+                                    else:
+                                        options_globales["player"]["attaque"] -= 1
+
+                                    # attaque
+                                    if pyxel.btn(pyxel.MOUSE_BUTTON_LEFT):
+                                        pass
+                                        options_globales["player"]["attaque"] = recup_option.param("fps")
+
+                                    # camera
+                                    if 250 < options_globales["player"]["y"] < 2250:
+                                        pyxel.camera(0, options_globales["player"]["y"] - 250)
+
+                                    
+
+                                    return options_globales, options_map
+                            </code>
+                        </pre>
+
+                        <p>
+                            La fonction update commence par calculer les deplacements du joueur puis si il attaque et fini par deplacer la camera en fonction de la position du joueur pour essayer de garder le joeeur au centre de l'ecran.
+                        </p>
+
+                        <pre>
+                            <code class="language-python">
+                                def recup_terrain(player:dict, options_map:dict) -> tuple:
+                                    """ recupere ou se trouve le joueur """
+                                    case_eau = [[200, 200], [550, 600], [350, 650], [150, 850], [800, 1100], [100, 1150], [350, 1200], [150, 1450], [300, 1450], [750, 1450], [200, 1700], [750, 1800], [50, 1850], [550, 1950], [200, 2000], [100, 2100], [350, 2150], [300, 2300], [100, 2350], [300, 2400], [650, 2400]]
+                                    case_lave = [[600, 150], [550, 200], [300, 300], [750, 300], [100, 400], [650, 450], [500, 500], [350, 550], [150, 700], [800, 700], [600, 850], [200, 900], [400, 950], [200, 1200], [500, 1250], [700, 1250], [650, 1500], [250, 1550], [50, 1600], [700, 1700], [500, 1750], [150, 1900], [400, 1950], [500, 2150], [750, 2150], [50, 2200], [250, 2400], [750, 2400]]
+                                    case_pomme = options_map["listes_pommes"]["pommes_vierges"]
+
+                                    # avec l'eau
+                                    for case in case_eau:
+                                        if case[0] - 30 < player["x"] < case[0] + 30 and case[1] - 30 < player["y"] < case[1] + 30:
+                                            player["modif_terrain"] = 0.5
+                                            return player, options_map
+                                    # avec la lave
+                                    for case in case_lave:
+                                        if case[0] - 30 < player["x"] < case[0] + 30 and case[1] - 30 < player["y"] < case[1] + 30:
+                                                player["vie"] = 0
+                                                player["mort"] = "brule"
+                                                player["modif_terrain"] = 0.5
+                                                return player, options_map
+                                    # avec les pommes
+                                    for i in range(len(case_pomme)):
+                                        if case_pomme[i][0] - 30 < player["x"] < case_pomme[i][0] + 30:
+                                            if case_pomme[i][1] - 30 < player["y"] < case_pomme[i][1] + 30:
+                                                player["vie"] += 50
+                                                player["modif_terrain"] = 1
+                                                options_map["listes_pommes"]["pommes_vierges"].pop(i)
+                                                return player, options_map
+                                    if math.hypot(player["x"] - 750, player["y"] - 200) < 50:
+                                        player["mort"] = "gagne"
+                                    player["modif_terrain"] = 1
+                                    return player, options_map
+                            </code>
+                        </pre>
+
+                        <p>
+                            La fonction recup_terrain calcule ou se situe le joueur par rapport aux obstacles et modifie des variables si besoin.
+                        </p>
+
+                        <pre>
+                            <code class="language-python">
+                                def draw(options_globales:dict, liste_datas_objets:dict, liste_datas_cartes:dict, options_map:dict) -> None:
+                                    affichage_pyxel.draw_carte(liste_datas_cartes["map"], options_map)
+                                    # si le joueur est en vie
+                                    if options_globales["player"]["vie"] != 0:
+                                        affichage_pyxel.draw_object(
+                                            liste_datas_objets["joueur"],
+                                            options_globales["player"]["x"],
+                                            options_globales["player"]["y"]
+                                        )
+                                    # si il est mort brule
+                                    elif options_globales["player"]["mort"] == "brule":
+                                        affichage_pyxel.draw_object(
+                                            liste_datas_objets["joueur_brule"],
+                                            options_globales["player"]["x"],
+                                            options_globales["player"]["y"]
+                                        )
+                                    # si il est mort tue par l'ia (t trop con c pas possible l'ia est nulle a chier)
+                                    elif options_globales["player"]["mort"] == "zombie":
+                                        affichage_pyxel.draw_object(
+                                            liste_datas_objets["joueur_zombie"],
+                                            options_globales["player"]["x"],
+                                            options_globales["player"]["y"]
+                                        )
+                                    return None
+                            </code>
+                        </pre>
+
+                        <p>
+                            Enfin la fonction draw se chage d'afficher le joueuren fonction de si il est mort ou non et si oui quel type de mort
+                        </p>
+
+                    </div>
+                </div>
+                <div id="V_6" class="sous_partie_fin">
+                    <div class="partie_titre">
+                        <p>
+                            6) Le fichier affichage_pyxel
+                        </p>
+                    </div>
+                    <div class="partie_texte">
+                        <p>
+                            C'est celui qui va faire tous les affichages ce qui a pour but de simplifier les afichages complexes de pyxel.
+                        </p>
+
+                        <pre>
+                            <code class="language-python">
+                                def draw_carte(data_carte:dict, options_map:dict=None) -> None:
+                                    """ Affiche la carte à l'écran en utilisant les données de Tiled et Pyxel """
+                                    for i in range(len(data_carte[0]["layers"])):
+                                        # calcul des differentes variables pour l'affichage
+                                        layer = data_carte[0]["layers"][i]
+                                        width, height = layer["width"], layer["height"]
+                                        tile_width, tile_height = data_carte[0]["tilewidth"], data_carte[0]["tileheight"]
+
+                                        decalage_x = (data_carte[0]["layers"][i]["offsetx"] if "offsetx" in data_carte[0]["layers"][i].keys() else 0)
+                                        decalage_y = (data_carte[0]["layers"][i]["offsety"] if "offsety" in data_carte[0]["layers"][i].keys() else 0)
+
+
+                                        ### ___ detection du type de tuile a afficher ___ ###
+                                        objects = data_carte[0]["layers"][i]["name"]
+                                        
+                                        # si c un texte
+                                        if objects == "textes":
+                                            pyxel.images[0].load(0, 0, "./resources/tiled/jeux_tuiles/lettres1.png")
+                                            pyxel.images[1].load(0, 0, "./resources/tiled/jeux_tuiles/lettres2.png")
+                                        # si c'est une partie de L'UI
+                                        elif objects == "UI":
+                                            pyxel.images[0].load(0, 0, "./resources/tiled/jeux_tuiles/UI.png")
+                                        # si c'est une partie du decor
+                                        elif objects == "decor":
+                                            pyxel.images[0].load(0, 0, "./resources/tiled/jeux_tuiles/decor.png")
+                                            pyxel.colors[15] = 0x449717
+                                                            
+
+                                        # affichage des tuiles une par une
+                                        for y in range(height):
+                                            for x in range(width):
+                                                tuile = layer["data"][y * width + x]
+                                                if tuile == 0:
+                                                    continue
+                                                tuile -= 1
+                                                tuile -= i*25
+
+                                                if objects == "decor" and (tuile == 0 or tuile == 3):
+                                                    if 9 < pyxel.frame_count % 30 < 20:
+                                                        tuile += 1
+                                                    elif 19 < pyxel.frame_count % 30 < 30:
+                                                        tuile += 2
+
+                                                u = tuile % 5 * tile_width
+                                                v = tuile // 5 * tile_height
+
+                                                pyxel.blt(
+                                                    x * tile_width + decalage_x,
+                                                    y * tile_height + decalage_y,
+                                                    (0 if tuile < 25 else 1),
+                                                    u,
+                                                    (v if tuile < 25 else v-250),
+                                                    tile_width,
+                                                    tile_height
+                                                    )
+                                        
+                                        if objects == "decor":
+                                            for pomme in options_map["listes_pommes"]["liste_de_base"]:
+                                                pyxel.blt(
+                                                    pomme[0],
+                                                    pomme[1],
+                                                    0,
+                                                    (200 if pomme in options_map["listes_pommes"]["pommes_vierges"] else 100),
+                                                    (50 if pomme in options_map["listes_pommes"]["pommes_vierges"] else 100),
+                                                    tile_width,
+                                                    tile_height,
+                                                    colkey=14
+                                                )
+                                    return None
+                            </code>
+                        </pre>
+
+                        <p>
+                            Le fonctionnement de l'affichage des carte se fait en plusieures etapes : <br>
+                            Il va itérer les couches d'affichage du bas vers le haut. <br>
+                            Il va chercher la hauteur des tuiles puis leur decalage par rapport a point 0, 0 <br>
+                            Il va chercher le type de la couche pour importer le jeux de tuiles correspndant. <br>
+                            Puis il calcule tuile par tuile où elle se situe et ou l'afficher. <br>
+                            Il affiche la tuile. <br>
+                            Si on est dans le jeu les pommes ont un affichage un peu complexe donc il le affiches en surcouche.
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+            <!-- partie 6 -->
+            <h1 id="VI">VI) Explication des fichiers de sauvegarde</h1>
+            <div class="partie">
+                <div id="VI_1" class="sous_partie">
+                    <div class="partie_titre">
+                        <p>
+                            1) Les fichiers options jeu
+                        </p>
+                    </div>
+                    <div class="partie_texte">
+                        <p>
+                            Ce sont la où sont stockés les variables de jeu comme les touches assignées ou les variables comme le nombre de fps cible.
+                        </p>
+                    </div>
+                </div>
+                <div id="VI_2" class="sous_partie">
+                    <div class="partie_titre">
+                        <p>
+                            2) Les fichiers de sauvegarde
+                        </p>
+                    </div>
+                    <div class="partie_texte">
+                        <p>
+                            Ce sont les fichiers qui contiennent vos sauvegardes. <br>
+                            Vous ne pouvez pas les ouvrir ou en tous cas les lires car ils sont chiffrés.
+                        </p>
+                    </div>
+                </div>
+                <div id="VI_3" class="sous_partie">
+                    <div class="partie_titre">
+                        <p>
+                            3) Les fichiers tiled
+                        </p>
+                    </div>
+                    <div class="partie_texte">
+                        <p>
+                            Ce sont les fichiers qui sont la pour tous les affichages supprimez les et pouf plus d'affichage.
+                        </p>
+                    </div>
+                </div>
+                <div id="VI_4" class="sous_partie_fin">
+                    <div class="partie_titre">
+                        <p>
+                            4) Les fichiers torch
+                        </p>
+                    </div>
+                    <div class="partie_texte">
+                        <p>
+                            Ce sont les fichiers qui sont la pour stocker les poids et les options des models d'IA NE PAS les modifier.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
             <br><br><br><br>
             <!-- La barre du bas -->
             <div class="bande_bas">
