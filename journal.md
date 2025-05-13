@@ -28,6 +28,8 @@ résolution de bugs
 debut de l'ajout des IA pour les ennemis
 création du site web
 
+# semaine lycee 3
+ajout de la modification des touches
 
 
 # autres

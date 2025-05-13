@@ -14,13 +14,13 @@ def update(options_globales:dict, options_map:dict) -> dict:
 
     # update des touches
     if options_globales["player"]["attaque"] == 0:
-        if pyxel.btn(pyxel.KEY_Z):
+        if pyxel.btn(recup_option.touche("avancer")):
             options_globales["player"]["y"] = max(options_globales["player"]["y"] - vitesse_personnage * options_globales["player"]["modif_terrain"], 0)
-        if pyxel.btn(pyxel.KEY_S):
+        if pyxel.btn(recup_option.touche("reculer")):
             options_globales["player"]["y"] = min(options_globales["player"]["y"] + vitesse_personnage * options_globales["player"]["modif_terrain"], 2450)
-        if pyxel.btn(pyxel.KEY_Q):
+        if pyxel.btn(recup_option.touche("gauche")):
             options_globales["player"]["x"] = max(options_globales["player"]["x"] - vitesse_personnage * options_globales["player"]["modif_terrain"], 0)
-        if pyxel.btn(pyxel.KEY_D):
+        if pyxel.btn(recup_option.touche("droite")):
             options_globales["player"]["x"] = min(options_globales["player"]["x"] + vitesse_personnage * options_globales["player"]["modif_terrain"], 850)
     else:
         options_globales["player"]["attaque"] -= 1

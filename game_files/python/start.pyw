@@ -14,6 +14,7 @@ import objects.curseur as curseur
 import objects.personnage as personnage
 import objects.monstres as monstres
 import objects.mort as mort
+import objects.parametres as parametres
 
 
 
@@ -70,6 +71,9 @@ def update():
         options_globales, options_map = personnage.update(options_globales, options_map)
         options_globales = monstres.update(options_globales, model)
 
+    elif options_globales["whereami"] == "parametres":
+        options_globales = parametres.update(options_globales)
+
     return None
 
 
@@ -107,6 +111,11 @@ def draw() -> None:
     # si j'ai gagné
     elif options_globales["whereami"] == "gagne":
         mort.draw(liste_datas_cartes["gagne"])
+
+    elif options_globales["whereami"] == "parametres":
+        # clear
+        pyxel.cls(0)
+        parametres.draw(liste_datas_cartes)
 
     # affichage de la souris
     curseur.draw(options_globales, liste_datas_objets)
@@ -152,7 +161,10 @@ options_globales = {
             "position": {"x": 800, "y": 2300},
             "recompense": 0
         }
-    ]
+    ],
+    "param" : {
+        "btn" : -1
+    }
 }
 
 
@@ -180,6 +192,9 @@ liste_datas_cartes = {
     ],
     "gagne" : [
         fct.json_read("./resources/tiled/json/gagne.json")
+    ],
+    "parametres" : [
+        fct.json_read("./resources/tiled/json/parametres.json")
     ],
     "map" : [
         fct.json_read("./resources/tiled/json/map.json")

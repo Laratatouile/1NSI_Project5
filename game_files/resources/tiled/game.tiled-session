@@ -3,15 +3,15 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "json/gagne.json",
+    "activeFile": "json/parametres.json",
     "console.history": [
         "ls",
         "list"
     ],
     "expandedProjectPaths": [
-        "json",
         ".",
-        "json/demarrage"
+        "json/demarrage",
+        "json"
     ],
     "file.lastUsedOpenFilter": "Tous les Fichiers (*)",
     "fileStates": {
@@ -95,8 +95,8 @@
             "scale": 0.7937777777777778,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 449.74804031354984,
-                "y": 331.9568868980963
+                "x": 462.3460246360582,
+                "y": 261.4081746920493
             }
         },
         "json/objects.json": {
@@ -105,6 +105,14 @@
             "viewCenter": {
                 "x": 124.98217087434034,
                 "y": 124.98217087434033
+            }
+        },
+        "json/parametres.json": {
+            "scale": 0.7754054054054054,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 273.40536772394563,
+                "y": 276.6294876263507
             }
         },
         "lettres1.tsx": {
@@ -170,27 +178,26 @@
     "map.tileWidth": 50,
     "map.width": 18,
     "openFiles": [
-        "json/mort.json",
         "lettres1.tsx",
         "lettres2.tsx",
         "UI.tsx",
-        "json/gagne.json"
+        "json/parametres.json"
     ],
     "project": "game.tiled-project",
     "property.type": "bool",
     "recentFiles": [
-        "json/mort.json",
         "lettres1.tsx",
         "lettres2.tsx",
         "UI.tsx",
+        "json/parametres.json",
         "json/gagne.json",
+        "json/mort.json",
         "json/menu_principal.json",
         "json/demarrage/demarrage1.json",
         "json/demarrage/demarrage4.json",
         "decor.tsx",
         "json/map.json",
-        "objects.tsx",
-        "json/objects.json"
+        "objects.tsx"
     ],
     "tileset.lastUsedFilter": "Tous les Fichiers (*)",
     "tileset.lastUsedFormat": "tsx",

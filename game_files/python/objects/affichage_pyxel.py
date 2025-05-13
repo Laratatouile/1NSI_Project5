@@ -1,7 +1,7 @@
 import pyxel
+import fonctions.touches_param as recup_param
 
-
-def draw_carte(data_carte:dict, options_map:dict=None) -> None:
+def draw_carte(data_carte:dict, options_map=None, surcouche=None) -> None:
     """ Affiche la carte à l'écran en utilisant les données de Tiled et Pyxel """
     for i in range(len(data_carte[0]["layers"])):
         # calcul des differentes variables pour l'affichage
@@ -57,6 +57,7 @@ def draw_carte(data_carte:dict, options_map:dict=None) -> None:
                     tile_height
                     )
         
+        # si je suis sur le jeu
         if objects == "decor":
             for pomme in options_map["listes_pommes"]["liste_de_base"]:
                 pyxel.blt(
@@ -69,6 +70,27 @@ def draw_carte(data_carte:dict, options_map:dict=None) -> None:
                     tile_height,
                     colkey=14
                 )
+        elif surcouche == "parametres":
+            code_personnalise = {
+                getattr(pyxel, f"KEY_{chr(i)}"): i - 65  # A=1, ..., Z=26
+                for i in range(65, 91)
+            }
+            code_personnalise.update({
+                pyxel.KEY_RIGHT: 38,
+                pyxel.KEY_LEFT: 39,
+                pyxel.KEY_DOWN: 40,
+                pyxel.KEY_UP: 41
+            })
+            pyxel.images[0].load(0, 0, "./resources/tiled/jeux_tuiles/lettres1.png")
+            pyxel.images[1].load(0, 0, "./resources/tiled/jeux_tuiles/lettres2.png")
+            touches = [code_personnalise.get(recup_param.touche(option)) for option in ["avancer", "reculer", "droite", "gauche"]]
+            for i in range(len(touches)):
+                if touches[i] < 24:
+                    pyxel.blt(475, i*100+75, 0, (touches[i] % 5)*50, (touches[i] // 5)*50, 50, 50, colkey=14)
+                else:
+                    touches[i] -= 25
+                    pyxel.blt(475, i*100+75, 1, (touches[i] % 5)*50, (touches[i] // 5)*50, 50, 50, colkey=14)
+
     return None
 
 
