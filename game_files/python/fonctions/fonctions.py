@@ -47,7 +47,7 @@ def json_save(data:dict, file:str) -> None:
     """
     try:
         dump(data, open(file, "w"))
-        logs("JsonReader", "INFO", "Le fichier a été enregistré")
+        logs("JsonWriter", "INFO", "Le fichier a été enregistré")
     except Exception as e:
         logs("JsonReader", "FATAL", "Le fichier n'a pas pu être enregistré : "+str(e), 2)
 

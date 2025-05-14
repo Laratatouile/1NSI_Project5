@@ -12,9 +12,9 @@ import objects.demarrage as demarrage
 import objects.menu_principal as menu_principal
 import objects.curseur as curseur
 import objects.personnage as personnage
-import objects.monstres as monstres
 import objects.mort as mort
 import objects.parametres as parametres
+import objects.monstres as monstres
 
 
 
@@ -59,7 +59,7 @@ def update():
 
 
     # affichage de la souris
-    options_globales = curseur.update(options_globales)
+    options_globales = curseur.update(options_globales, model)
 
     
     # si je suis sur l'ecran de demarrage
@@ -163,7 +163,8 @@ options_globales = {
         }
     ],
     "param" : {
-        "btn" : -1
+        "btn" : -1,
+        "start" : False
     }
 }
 

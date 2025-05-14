@@ -1,16 +1,24 @@
+# ia
 import torch
 import torch.nn.functional as F
 import torch.optim as optim
+# autres libs
 import os
-import objects.affichage_pyxel as affichage_pyxel
 import math
-import fonctions.chiffrement as chiffrement
 import random
 import pyxel
-
+# objects
+import objects.affichage_pyxel as affichage_pyxel
+# fonctions
+import fonctions.chiffrement as chiffrement
+# son
+from pygame import mixer as mixer
 
 def initialiser() -> dict:
     # creation ou ouverture de l'IA
+    mixer.init()
+    mixer.music.load("./resources/musique/jeu.mp3")
+    mixer.music.play(-1)
     # si on a un model pret
     if os.listdir("./resources/torch") != []:
         # detection du nom du model

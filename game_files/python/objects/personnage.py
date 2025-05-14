@@ -25,6 +25,8 @@ def update(options_globales:dict, options_map:dict) -> dict:
     else:
         options_globales["player"]["attaque"] -= 1
 
+        
+
     # attaque
     if pyxel.btn(pyxel.MOUSE_BUTTON_LEFT):
         pass

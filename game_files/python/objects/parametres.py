@@ -24,26 +24,26 @@ def recup_touche_press() -> int:
 
 
 
-def update(option_globales:dict) -> dict:
+def update(options_globales:dict) -> dict:
     # si je veux modifier une touche
-    if pyxel.btnp(pyxel.MOUSE_BUTTON_LEFT) and option_globales["whereami"] == "parametres":
+    if pyxel.btnp(pyxel.MOUSE_BUTTON_LEFT) and options_globales["param"]["start"] == True:
         if 50 < pyxel.mouse_x < 400:
             if 50 < pyxel.mouse_y < 150:
-                option_globales["param"]["btn"] = 0
+                options_globales["param"]["btn"] = 0
             elif 150 < pyxel.mouse_y < 250:
-                option_globales["param"]["btn"] = 1
+                options_globales["param"]["btn"] = 1
             elif 250 < pyxel.mouse_y < 350:
-                option_globales["param"]["btn"] = 2
+                options_globales["param"]["btn"] = 2
             elif 350 < pyxel.mouse_y < 450:
-                option_globales["param"]["btn"] = 3
+                options_globales["param"]["btn"] = 3
         elif 750 < pyxel.mouse_x < 850 and 50 < pyxel.mouse_y < 150:
-            option_globales["param"] = -1
-            option_globales["whereami"] = "menu_principal"
+            options_globales["param"]["btn"] = -1
+            options_globales["whereami"] = "menu_principal"
     # si je change une touche
-    elif option_globales["param"]["btn"] != -1 and option_globales["whereami"] == "parametres":
+    elif options_globales["param"]["btn"] != -1 and options_globales["param"]["start"] == True:
         touche = recup_touche_press()
         if touche:
-            touche_modif = option_globales["param"]["btn"]
+            touche_modif = options_globales["param"]["btn"]
             if touche_modif == 0:
                 recup_touche.change_touche("avancer", touche)
             elif touche_modif == 1:
@@ -52,8 +52,10 @@ def update(option_globales:dict) -> dict:
                 recup_touche.change_touche("droite", touche)
             elif touche_modif == 3:
                 recup_touche.change_touche("gauche", touche)
-            option_globales["param"]["btn"] = -1
-    return option_globales
+            options_globales["param"]["btn"] = -1
+    else:
+        options_globales["param"]["start"] = True
+    return options_globales
 
 
 

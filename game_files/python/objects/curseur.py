@@ -1,8 +1,11 @@
 import pyxel
 import objects.affichage_pyxel as affichage_pyxel
+import fonctions.sauvegarde as sauvegarde
+from pygame import mixer
 
 
-def update(options_globales:dict) -> dict:
+def update(options_globales:dict, model) -> dict:
+    """ met a jour le curseur """
     options_globales["curseur"]["x"] = pyxel.mouse_x
     options_globales["curseur"]["y"] = pyxel.mouse_y
 
@@ -13,7 +16,10 @@ def update(options_globales:dict) -> dict:
                     options_globales["whereami"] = "jeu"
                     pyxel.camera(0, 2000)
                 elif 200 < pyxel.mouse_y < 300:
+                    options_globales["param"]["start"] = False
                     options_globales["whereami"] = "parametres"
+                elif 350 < pyxel.mouse_y < 450:
+                    sauvegarde.save(options_globales, model)
     return options_globales
 
 

@@ -9,8 +9,8 @@
         "list"
     ],
     "expandedProjectPaths": [
-        ".",
         "json/demarrage",
+        ".",
         "json"
     ],
     "file.lastUsedOpenFilter": "Tous les Fichiers (*)",
@@ -87,7 +87,7 @@
             "scale": 0.7789999999999999,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 449.93581514762514,
+                "x": 449.2939666238768,
                 "y": 295.8921694480103
             }
         },
@@ -111,8 +111,8 @@
             "scale": 0.7754054054054054,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 273.40536772394563,
-                "y": 276.6294876263507
+                "x": 447.5078424538167,
+                "y": 279.20878354827465
             }
         },
         "lettres1.tsx": {
@@ -190,9 +190,9 @@
         "lettres2.tsx",
         "UI.tsx",
         "json/parametres.json",
+        "json/menu_principal.json",
         "json/gagne.json",
         "json/mort.json",
-        "json/menu_principal.json",
         "json/demarrage/demarrage1.json",
         "json/demarrage/demarrage4.json",
         "decor.tsx",

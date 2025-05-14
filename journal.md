@@ -1,12 +1,5 @@
-# avant
-reprise de mon ancien jeu
-supression de 3/4 des fichiers de class
-replacement du mot clef class pas le mot clef def dans touts les autres fichier
-
-
 # semaine vacances 1
-## dimanche
-idee de ce que je vais faire : "mario patate"
+idee de ce que je vais faire
 creation des resources
 creation des graphismes des patates et de l'arriere plan du niveau et des monstres
 creation de la carte de jeu
@@ -30,7 +23,9 @@ création du site web
 
 # semaine lycee 3
 ajout de la modification des touches
-
+d'un bouton pour quitter
+ajout de la musique
+FIN
 
 # autres
 Les textes sont de A à X dans l'image 0 et de Z à 9 dans la 1
